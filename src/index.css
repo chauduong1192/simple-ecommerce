@@ -1,0 +1,9 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #303030;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  background: #fff; }
+  body .mt-30 {
+    margin-top: 30px !important; }

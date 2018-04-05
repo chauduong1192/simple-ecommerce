@@ -1,0 +1,11 @@
+.header {
+  background-color: #fff;
+  position: fixed;
+  display: block;
+  top: 0;
+  width: 100%;
+  z-index: 101;
+  font-size: 15px;
+  text-align: center; }
+  .header .navbar .mr-auto.navbar-nav {
+    margin-left: 50px; }

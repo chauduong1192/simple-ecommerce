@@ -1,0 +1,111 @@
+$primary-color: #1293fe;
+
+.product-details {
+    padding-top: 100px;
+
+    .product-detail-left {
+        .product-small-image {
+            margin-top: -13px;
+            padding-right: 10px;
+            width: 20%;
+            .pot-small-img {
+                margin-top: 13px;
+            }
+        }
+        .product-big-image {
+            width: 80%;
+            .fade.in {
+                opacity: 1;
+            }
+        }
+    }
+    .product-detail-right {
+        .title {
+            h2 {
+                color: #444444;
+                font-size: 30px;
+                font-weight: 500;
+                text-transform: capitalize;
+            }
+        }
+        .detail {
+            p {
+                color: #666666;
+                font-size: 14px;
+                line-height: 26px;
+            }
+        }
+        .price {
+            display: flex;
+            margin-bottom: 35px;
+            margin-top: 30px;
+            li {
+                color: $primary-color;
+                font-size: 30px;
+            }
+            .old {
+                color: #4d4d4d;
+                font-size: 22px;
+                padding-right: 15px;
+                text-decoration: line-through;
+            }
+        }
+        .quantity {
+            align-items: center;
+            display: flex;
+            margin-bottom: 33px;
+            .title {
+                padding-right: 20px;
+                span {
+                    color: #666666;
+                    font-size: 18px;
+                    text-transform: capitalize;
+                }
+            }
+            .cart-plus-minus {
+                display: flex;
+                position: relative;
+                &-box {
+                    padding: 0 20px;
+                    text-align: center;
+                    background: transparent;
+                    border: 0 none;
+                    max-width: 82px;
+                    outline: none;
+                }
+                .button {
+                    color: #666666;
+                    font-size: 16px;
+                    cursor: pointer;
+                }
+                .dec {
+                    @extend .button;
+                    left: 0;
+                    position: absolute;
+                }
+                .inc {
+                    @extend .button;
+                    position: absolute;
+                    right: 0;
+                }
+            }
+        }
+        .btn-buy-now {
+            color: #4b4b4b;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: all 0.3s ease 0s;
+            width: 100%;
+            border: 1px solid #d5d5d5;
+            display: block;
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+        }
+    }
+    .title {
+        h2 {
+            font-size: 30px;
+        }
+    }
+}

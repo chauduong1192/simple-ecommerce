@@ -1,0 +1,16 @@
+.body-overlay {
+  backface-visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  transition: opacity 0.3s ease 0s, visibility 0s ease 0.3s, transform 0.3s ease 0s;
+  visibility: hidden;
+  width: 100%;
+  z-index: 99999; }
+  .body-overlay.is-visible {
+    opacity: 1;
+    transition: opacity 0.3s ease 0s, visibility 0s ease 0s, transform 0.3s ease 0s;
+    visibility: visible; }

@@ -10,7 +10,7 @@ import './Footer.css';
 const Footer = () => (
     <footer className="footer" >
         <Container>
-            <Row style={{ justifyContent: 'space-between'}}>
+            <Row>
                 <div>
                     © {APP.year} All rights reserved
                 </div>

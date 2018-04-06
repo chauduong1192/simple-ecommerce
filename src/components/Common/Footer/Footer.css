@@ -1,2 +1,5 @@
 .footer {
   background-color: #f3f3f3; }
+  .footer .row {
+    padding: 10px;
+    justify-content: space-between; }

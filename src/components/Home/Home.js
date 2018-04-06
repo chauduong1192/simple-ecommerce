@@ -4,8 +4,11 @@ import {
     Row,
     Col
 } from 'reactstrap';
+
+import Product from '../Product'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faShoppingCart from '@fortawesome/fontawesome-free-solid/faShoppingCart';
+import faPlus from '@fortawesome/fontawesome-free-solid/faPlus';
 
 import './Home.css';
 
@@ -142,162 +145,9 @@ const Home = () => (
                         <h2>Best Product</h2>
                     </div>
                 </Col>
-                <Col md="3" sm="6" xs="12" className="product-height">
-                    <div className="product mt-5">
-                        <div className="product-inner">
-                            <div className="pro-thumb">
-                                <a className="d-block">
-                                    <img src="https://cdn.shopify.com/s/files/1/2300/9895/products/3_22b86be5-8d7b-4cbc-a2a2-c522bbfb46f4_grande.jpg?v=1505733074" alt="banner" />
-                                </a>
-                            </div>
-                            <div className="add-to-cart">
-                                <a>
-                                    <FontAwesomeIcon icon={faShoppingCart} />
-                                </a>
-                            </div>
-                        </div>
-                        <div className="product-details">
-                            <h2>
-                                <a>Smart head cap</a>
-                            </h2>
-                            <ul className="product-price">
-                                <li className="new-price">
-                                    <span>$50.00</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </Col>
-                <Col md="3" sm="6" xs="12" className="product-height">
-                    <div className="product mt-5">
-                        <div className="product-inner">
-                            <div className="pro-thumb">
-                                <a className="d-block">
-                                    <img src="https://cdn.shopify.com/s/files/1/2300/9895/products/3_22b86be5-8d7b-4cbc-a2a2-c522bbfb46f4_grande.jpg?v=1505733074" alt="banner" />
-                                </a>
-                            </div>
-                            <div className="add-to-cart">
-                                <a>
-                                    <FontAwesomeIcon icon={faShoppingCart} />
-                                </a>
-                            </div>
-                        </div>
-                        <div className="product-details">
-                            <h2>
-                                <a>Smart head cap</a>
-                            </h2>
-                            <ul className="product-price">
-                                <li className="new-price">
-                                    <span>$50.00</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </Col>
-                <Col md="3" sm="6" xs="12" className="product-height">
-                    <div className="product mt-5">
-                        <div className="product-inner">
-                            <div className="pro-thumb">
-                                <a className="d-block">
-                                    <img src="https://cdn.shopify.com/s/files/1/2300/9895/products/3_22b86be5-8d7b-4cbc-a2a2-c522bbfb46f4_grande.jpg?v=1505733074" alt="banner" />
-                                </a>
-                            </div>
-                            <div className="add-to-cart">
-                                <a>
-                                    <FontAwesomeIcon icon={faShoppingCart} />
-                                </a>
-                            </div>
-                        </div>
-                        <div className="product-details">
-                            <h2>
-                                <a>Smart head cap</a>
-                            </h2>
-                            <ul className="product-price">
-                                <li className="new-price">
-                                    <span>$50.00</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </Col>
-                <Col md="3" sm="6" xs="12" className="product-height">
-                    <div className="product mt-5">
-                        <div className="product-inner">
-                            <div className="pro-thumb">
-                                <a className="d-block">
-                                    <img src="https://cdn.shopify.com/s/files/1/2300/9895/products/3_22b86be5-8d7b-4cbc-a2a2-c522bbfb46f4_grande.jpg?v=1505733074" alt="banner" />
-                                </a>
-                            </div>
-                            <div className="add-to-cart">
-                                <a>
-                                    <FontAwesomeIcon icon={faShoppingCart} />
-                                </a>
-                            </div>
-                        </div>
-                        <div className="product-details">
-                            <h2>
-                                <a>Smart head cap</a>
-                            </h2>
-                            <ul className="product-price">
-                                <li className="new-price">
-                                    <span>$50.00</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </Col>
-                <Col md="3" sm="6" xs="12" className="product-height">
-                    <div className="product mt-5">
-                        <div className="product-inner">
-                            <div className="pro-thumb">
-                                <a className="d-block">
-                                    <img src="https://cdn.shopify.com/s/files/1/2300/9895/products/3_22b86be5-8d7b-4cbc-a2a2-c522bbfb46f4_grande.jpg?v=1505733074" alt="banner" />
-                                </a>
-                            </div>
-                            <div className="add-to-cart">
-                                <a>
-                                    <FontAwesomeIcon icon={faShoppingCart} />
-                                </a>
-                            </div>
-                        </div>
-                        <div className="product-details">
-                            <h2>
-                                <a>Smart head cap</a>
-                            </h2>
-                            <ul className="product-price">
-                                <li className="new-price">
-                                    <span>$50.00</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </Col>
-                <Col md="3" sm="6" xs="12" className="product-height">
-                    <div className="product mt-5">
-                        <div className="product-inner">
-                            <div className="pro-thumb">
-                                <a className="d-block">
-                                    <img src="https://cdn.shopify.com/s/files/1/2300/9895/products/3_22b86be5-8d7b-4cbc-a2a2-c522bbfb46f4_grande.jpg?v=1505733074" alt="banner" />
-                                </a>
-                            </div>
-                            <div className="add-to-cart">
-                                <a>
-                                    <FontAwesomeIcon icon={faShoppingCart} />
-                                </a>
-                            </div>
-                        </div>
-                        <div className="product-details">
-                            <h2>
-                                <a>Smart head cap</a>
-                            </h2>
-                            <ul className="product-price">
-                                <li className="new-price">
-                                    <span>$50.00</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </Col>
+                <Product md="3" sm="6" xs="12" />
+                <Product md="3" sm="6" xs="12" />
+                
             </Row>
         </Container>
     </div>

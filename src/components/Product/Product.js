@@ -9,22 +9,19 @@ import faEye from '@fortawesome/fontawesome-free-solid/faEye';
 
 import './Product.css';
 
-class Product extends Component {
-    render() {
-        const {md, sm, xs} = this.props;
-        return (
-            <Col md={md} sm={sm} xs={xs} className="product-height">
+const Product = ({product, ...rest}) => (
+    <Col {...rest} className="product-height">
                 <div className="product mt-5">
                     <div className="product-inner">
                         <div className="pro-thumb">
                             <a className="d-block">
-                                <img src="https://cdn.shopify.com/s/files/1/2300/9895/products/3_22b86be5-8d7b-4cbc-a2a2-c522bbfb46f4_grande.jpg?v=1505733074" alt="banner" />
+                                <img src={product.image} alt="banner" />
                             </a>
                         </div>
                         <div className="product-to-info">
                             <ul className="action">
                                 <li>
-                                    <Link to="">
+                                    <Link to={`/products-detail/${product.slug}`}>
                                         <FontAwesomeIcon icon={faEye}/>
                                     </Link>
                                 </li>
@@ -38,19 +35,19 @@ class Product extends Component {
                     </div>
                     <div className="product-details">
                         <h2>
-                            <a>Smart head cap</a>
+                            <a>{product.title}</a>
                         </h2>
                         <ul className="product-price">
+                            <li className="old-price">
+                                <span>{`$${product.oldPrice}.00`}</span>
+                            </li>
                             <li className="new-price">
-                                <span>$50.00</span>
+                                <span>{`$${product.newPrice}.00`}</span>
                             </li>
                         </ul>
                     </div>
                 </div>
             </Col>
-        );
-    }
-}
-
+);
 
 export default Product;

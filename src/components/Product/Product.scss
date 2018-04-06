@@ -100,6 +100,11 @@ $primary-color: #1293fe;
                     font-size: 16px;
                 }
 
+                .old-price {
+                    padding-right: 12px;
+                    color: #9c9b9b;
+                    text-decoration: line-through;
+                }
                 .new-price {
                     padding-left: 0px;
                 }

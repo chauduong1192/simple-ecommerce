@@ -1,5 +1,5 @@
-import { default as errorCodes } from './errorCodes';
+import { default as categories } from './categories';
 
 export {
-  errorCodes
+  categories,
 }

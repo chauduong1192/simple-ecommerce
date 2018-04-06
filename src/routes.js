@@ -8,14 +8,14 @@ const routes = [{
     key: 'home',
     path: '/',
     exact: true,
-    render: Home,
+    component: Home,
 }, {
-    key: 'products-list',
-    path: '/products-list',
+    key: 'products',
+    path: '/products/:categoryId',
     component: ProductsList,
 }, {
     key: 'products-detail',
-    path: '/products-detail',
+    path: '/products-detail/:productId',
     component: ProductDetails,
 }];
 

@@ -10,11 +10,13 @@ import {
     Badge
 } from 'reactstrap';
 import {Link} from 'react-router-dom';
+
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faShoppingCart from '@fortawesome/fontawesome-free-solid/faShoppingCart';
 
 import ShoppingCartModal from '../ShoppingCartModal';
 
+import { CategoryAPI } from '../../../services/api';
 import { APP } from "../../../config";
 
 import './Header.css';
@@ -26,22 +28,46 @@ class Header extends Component {
 
         this.toggle = this.toggle.bind(this);
         this.state = {
+            categories: [],
             isOpen: false,
             isShow: false
         };
 
         this.recProp = this.recProp.bind(this);
     }
+
+   async componentDidMount() {
+        try {
+            const categories = await CategoryAPI.getCategories();
+            this.setState({
+                categories
+            })
+        }catch(error) {
+            console.log(error);
+        }
+    }
+
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
         });
     }
+
     recProp() {
         this.setState({
             isShow: false
         });
     }
+
+    renderCategories(categories) {
+        if(!categories.length) return;
+        return categories.map((category) => 
+            <NavItem key={category.id}>
+                <Link className="nav-link" to={category.title}>{category.title}</Link>
+            </NavItem>
+        )
+    }
+
     render() {
         return (
             <div className="header">
@@ -51,12 +77,9 @@ class Header extends Component {
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="mr-auto" navbar>
-                                <NavItem>
-                                    <NavLink href="/Men">Man</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="/Men">Woman</NavLink>
-                                </NavItem>
+                            {
+                                this.renderCategories(this.state.categories)
+                            }
                             </Nav>
                             <Nav navbar>
                                 <NavItem>
@@ -75,6 +98,5 @@ class Header extends Component {
         );
     }
 }
-
 
 export default Header;

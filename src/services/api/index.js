@@ -1,5 +1,5 @@
-import * as ErrorCodeAPI from './errorCode';
+import * as CategoryAPI from './categories';
 
 export{
-  ErrorCodeAPI,
+  CategoryAPI,
 };

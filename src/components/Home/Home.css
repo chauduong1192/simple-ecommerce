@@ -16,6 +16,15 @@
         text-transform: capitalize; }
       .home .feature .feature-details .feature-btn {
         margin-top: 7px; }
+    .home .feature .wrap-comming-soon {
+      background-color: #333;
+      opacity: 0.9;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 100%;
+      height: 100%; }
   .home .best-seller {
     padding-bottom: 40px;
     margin-top: 24px; }
@@ -26,18 +35,18 @@
     .home .best-seller .new-product {
       position: relative; }
       .home .best-seller .new-product img {
-        width: 100%; }
-    .home .best-seller .new-product-details {
-      left: 30px;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%); }
-      .home .best-seller .new-product-details h2 {
-        font-size: 22px;
-        text-transform: capitalize; }
-      .home .best-seller .new-product-details .new-product-btn {
-        margin-top: 8px;
-        text-align: center; }
+        width: 100%;
+        height: 300px; }
+      .home .best-seller .new-product .details {
+        margin-top: 10px; }
+        .home .best-seller .new-product .details span {
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 2;
+          color: #333; }
+      .home .best-seller .new-product:hover .details span {
+        color: #1293fe;
+        cursor: pointer; }
   .home .btn-shop-now {
     color: #3a3a3a;
     font-size: 16px;

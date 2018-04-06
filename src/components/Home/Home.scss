@@ -26,6 +26,16 @@ $primary-color: #1293fe;
                 margin-top: 7px;
             }
         }
+        .wrap-comming-soon {
+            background-color: #333;
+            opacity: 0.9;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            width: 100%;
+            height: 100%;
+        }
     }
     .best-seller {
         padding-bottom: 40px;
@@ -41,20 +51,22 @@ $primary-color: #1293fe;
             position: relative;
             img {
                 width: 100%;
+                height: 300px;
             }
-        }
-        .new-product-details {
-            left: 30px;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            h2 {
-                font-size: 22px;
-                text-transform: capitalize;
+            .details {
+                margin-top: 10px;
+                span {
+                    font-size: 16px;
+                    font-weight: 500;
+                    line-height: 2;
+                    color: #333;
+                }
             }
-            .new-product-btn {
-                margin-top: 8px;
-                text-align: center;
+            &:hover {
+                .details span {
+                    color: $primary-color;
+                    cursor: pointer;
+                }
             }
         }
     }

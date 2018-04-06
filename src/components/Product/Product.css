@@ -72,6 +72,10 @@
         .product-height .product .product-details .product-price li {
           color: #1293fe;
           font-size: 16px; }
+        .product-height .product .product-details .product-price .old-price {
+          padding-right: 12px;
+          color: #9c9b9b;
+          text-decoration: line-through; }
         .product-height .product .product-details .product-price .new-price {
           padding-left: 0px; }
     .product-height .product:hover .product-to-info {

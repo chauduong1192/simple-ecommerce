@@ -4,15 +4,66 @@ import {
   Container,
   Row,
   Col,
-  Button
+  // Button
 } from 'reactstrap';
-import Product from '../Product';
+// import Product from '../Product';
+
+import PRODUCTS from '../../services/mockData/products';
 
 import './ProductDetails.css';
 
+const imageUrl = 'assets/images/products/';
+
 class ProductDetails extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      product: {},
+      selectedImage: ''
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.getProductDetails(nextProps.match);
+  }
+
+  componentDidMount() {
+    this.getProductDetails(this.props.match);
+  }
+
+  getProductDetails(match) {
+    const matchNew = match.params.productId;
+    const array = matchNew.split('-');
+    const productId = array[array.length - 1];
+    PRODUCTS.filter((product) =>{
+      if(product.id === productId){
+        this.setState({
+          product,
+          selectedImage : `${imageUrl}${product.images[0]}`
+        });
+        return;
+      }
+    });
+  }
+
+  onSelected(image) {
+    
+  }
+
+  renderSmallImages(images) {
+    if(!images.length) return;
+    return images.map((image) =>
+      <li key={image} className="pot-small-img" onMouseEnter={() => this.setState({selectedImage: `${imageUrl}${image}`})}>
+        <a className="d-block">
+          <img className="w-100" src={`${imageUrl}${image}`}/>
+        </a>
+      </li>
+    );
+  }
+
   render() {
-    console.log(this.props);
+    const {product, selectedImage} = this.state;
     return(
       <Container className="product-details">
         <Row>
@@ -22,31 +73,14 @@ class ProductDetails extends Component {
           <Col md="8" sm="12" xs="12">
             <div className="d-flex product-detail-left">
               <ul className="product-small-image">
-                <li className="pot-small-img">
-                  <a className="d-block">
-                    <img className="w-100" src="https://cdn.shopify.com/s/files/1/2508/8358/products/26_e5283375-8a77-4668-a10a-66bce2950d4c_compact.jpg?v=1509598488"/>
-                  </a>
-                </li>
-                <li className="pot-small-img">
-                  <a className="d-block">
-                    <img className="w-100" src="https://cdn.shopify.com/s/files/1/2508/8358/products/26_e5283375-8a77-4668-a10a-66bce2950d4c_compact.jpg?v=1509598488"/>
-                  </a>
-                </li>
-                <li className="pot-small-img">
-                  <a className="d-block">
-                    <img className="w-100" src="https://cdn.shopify.com/s/files/1/2508/8358/products/26_e5283375-8a77-4668-a10a-66bce2950d4c_compact.jpg?v=1509598488"/>
-                  </a>
-                </li>
-                <li className="pot-small-img">
-                  <a className="d-block">
-                    <img className="w-100" src="https://cdn.shopify.com/s/files/1/2508/8358/products/26_e5283375-8a77-4668-a10a-66bce2950d4c_compact.jpg?v=1509598488"/>
-                  </a>
-                </li>
+                { product.images &&
+                  this.renderSmallImages(product.images)
+                }
               </ul>
               <div className="product-big-image">
                 <div className="image-tab-content tab-content">
                   <div className="tab-pane fade in active">
-                    <img className="w-100" src="https://cdn.shopify.com/s/files/1/2508/8358/products/26_e5283375-8a77-4668-a10a-66bce2950d4c_grande.jpg?v=1509598488"/>
+                    <img className="w-100" src={selectedImage}/>
                   </div>
                 </div>
               </div>
@@ -55,18 +89,16 @@ class ProductDetails extends Component {
           <Col md="4" sm="12" xs="12">
             <div className="product-detail-right">
               <div className="title">
-                <h2>Wall Wacth</h2>
+                <h2>{product.title}</h2>
               </div>
               <div className="detail">
-                <p>
-                  There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
-                </p>
+                <p>{product.description}</p>
               </div>
               <ul className="price">
                 <li className="old">
-                  <span>$120.00</span>
+                  <span>{`$${product.oldPrice}`}</span>
                 </li>
-                <li><span>$120.00</span></li>
+                <li><span>{`$${product.newPrice}`}</span></li>
               </ul>
               <div className="quantity">
                 <div className="title">
@@ -97,5 +129,11 @@ class ProductDetails extends Component {
     );
   };
 };
+
+const propTypes = {
+  match: PropTypes.object.isRequired,
+};
+
+ProductDetails.propTypes = propTypes;
 
 export default ProductDetails;

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {
-    Container,
-    Badge
+    // Container,
+    // Badge
 } from 'reactstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faTimes from '@fortawesome/fontawesome-free-solid/faTimes';
@@ -66,5 +67,11 @@ class ShoppingCartModal extends Component {
     }
 }
 
+const propTypes = {
+    isShow: PropTypes.bool.isRequired,
+    recProp: PropTypes.func.isRequired,
+};
+
+ShoppingCartModal.propTypes = propTypes;
 
 export default ShoppingCartModal;

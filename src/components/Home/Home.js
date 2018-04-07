@@ -6,9 +6,6 @@ import {
 } from 'reactstrap';
 import {Link} from 'react-router-dom';
 import Product from '../Product'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faShoppingCart from '@fortawesome/fontawesome-free-solid/faShoppingCart';
-import faPlus from '@fortawesome/fontawesome-free-solid/faPlus';
 
 import {home} from '../../services/mockData/home';
 

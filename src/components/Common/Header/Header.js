@@ -10,7 +10,6 @@ import {
     Badge
 } from 'reactstrap';
 import {Link} from 'react-router-dom';
-
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faShoppingCart from '@fortawesome/fontawesome-free-solid/faShoppingCart';
 
@@ -36,7 +35,7 @@ class Header extends Component {
         this.recProp = this.recProp.bind(this);
     }
 
-   async componentDidMount() {
+    async componentDidMount() {
         try {
             const categories = await CategoryAPI.getCategories();
             this.setState({
@@ -63,7 +62,7 @@ class Header extends Component {
         if(!categories.length) return;
         return categories.map((category) => 
             <NavItem key={category.id}>
-                <Link className="nav-link" to={category.title}>{category.title}</Link>
+                <Link className="nav-link" to={`/products/${category.slug}`}>{category.title}</Link>
             </NavItem>
         )
     }

@@ -4,9 +4,11 @@ import {
   Container,
   Row,
   Col,
-  FormGroup, Input, Label
+  // FormGroup,
+  // Input,
+  // Label
 } from 'reactstrap';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
 import PRODUCTS from '../../services/mockData/products';
 
@@ -25,9 +27,18 @@ class ProductsList extends Component {
       products: []
     }
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.getProductbyCategoryId(nextProps.match);
+  }
+  
   componentDidMount() {
-    const math = this.props.match.params.categoryId;
-    const array = math.split('-');
+    this.getProductbyCategoryId(this.props.match);
+  }
+
+  getProductbyCategoryId(match) {
+    const matchNew = match.params.categoryId;
+    const array = matchNew.split('-');
     const categoryId = array[array.length - 1];
     const products = PRODUCTS.filter((product) => product.category.id === categoryId);
     this.setState({products});
@@ -98,5 +109,11 @@ class ProductsList extends Component {
     );
   }
 }
+
+const propTypes = {
+  match: PropTypes.object.isRequired,
+};
+
+ProductsList.propTypes = propTypes;
 
 export default ProductsList;

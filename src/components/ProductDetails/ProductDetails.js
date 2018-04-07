@@ -6,7 +6,9 @@ import {
   Col,
   // Button
 } from 'reactstrap';
-// import Product from '../Product';
+
+import { connect } from 'react-redux';
+import { addToCart, cartsSelectors } from '../../state/ducks/carts';
 
 import PRODUCTS from '../../services/mockData/products';
 
@@ -20,8 +22,13 @@ class ProductDetails extends Component {
 
     this.state = {
       product: {},
-      selectedImage: ''
+      selectedImage: '',
+      quantity: 1
     };
+
+    this.addToCart = this.addToCart.bind(this);
+    this.incQuantity = this.incQuantity.bind(this);
+    this.decQuantity = this.decQuantity.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -30,6 +37,27 @@ class ProductDetails extends Component {
 
   componentDidMount() {
     this.getProductDetails(this.props.match);
+  }
+
+  async addToCart(cart) {
+    try{ 
+      await this.props.addToCart(Object.assign(cart, {quantity: this.quantity.value}));
+    }catch(error) {
+      console.log(error);
+      
+    }
+  }
+
+  incQuantity() {
+    const quantity = parseInt(this.quantity.value) + 1;
+    this.setState({quantity})
+  }
+
+  decQuantity() {
+    if(parseInt(this.quantity.value)) {
+      const quantity = parseInt(this.quantity.value) - 1;
+      this.setState({quantity})
+    }
   }
 
   getProductDetails(match) {
@@ -45,10 +73,6 @@ class ProductDetails extends Component {
         return;
       }
     });
-  }
-
-  onSelected(image) {
-    
   }
 
   renderSmallImages(images) {
@@ -105,13 +129,13 @@ class ProductDetails extends Component {
                   <span>Quantity: </span>
                 </div>
                 <div className="cart-plus-minus">
-                  <input className="cart-plus-minus-box" defaultValue="2" />
-                  <div className="dec">-</div>
-                  <div className="inc">+</div>
+                  <input ref={(ref) => this.quantity = ref} className="cart-plus-minus-box" value={this.state.quantity} defaultValue={this.state.quantity}/>
+                  <div onClick={this.decQuantity} className="dec">-</div>
+                  <div onClick={this.incQuantity} className="inc">+</div>
                 </div>
               </div>
               <div>
-                <a className="btn-buy-now">buy now</a>
+                <a onClick={() => this.addToCart(product)} className="btn-checkout">Add to cart</a>
               </div>
             </div>
           </Col>
@@ -132,8 +156,20 @@ class ProductDetails extends Component {
 
 const propTypes = {
   match: PropTypes.object.isRequired,
+  carts: PropTypes.array.isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
+const defaultProps = {
+  carts: []
+}
 
+ProductDetails.defaultProps = defaultProps;
 ProductDetails.propTypes = propTypes;
 
-export default ProductDetails;
+export default connect(
+  state => ({
+      carts: cartsSelectors.getCarts(state),
+  }), {
+      addToCart,
+  },
+)(ProductDetails);

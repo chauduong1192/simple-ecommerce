@@ -1,4 +1,6 @@
 $primary-color: #1293fe;
+$hover-color: #34a2fe;
+$active-color: #0182ed;
 
 .shopping-cart {
     background: #eeeeee none repeat scroll 0 0;
@@ -38,7 +40,12 @@ $primary-color: #1293fe;
             }
         }
         .cart-empty-title {
-            display: none;
+            display: block;
+            h2 {
+                color: #000000;
+                font-size: 20px;
+                font-weight: 400;
+            }
         }
         .cart-wrap {
             margin-top: -30px;
@@ -85,36 +92,34 @@ $primary-color: #1293fe;
             display: flex;
             justify-content: space-between;
             padding: 22px 0;
-            span:first-child {
+            span {
                 font-size: 20px;
-                font-weight: 400;
+                font-weight: 500;
             }
         }
         .cart-btn {
-            a {
-                background-color: transparent;
-                border: 1px solid #000;
-                color: #000;
-                font-size: 15px;
-                height: 57px;
-                line-height: 57px;
-                margin-bottom: 15px;
-                padding: 0 25px;
-                text-align: center;
-                text-transform: none;
-                transition: all 0.5s ease 0s;
+            .btn-checkout {
+                color: #fff;
+                background-color: $primary-color;
+                font-size: 14px;
+                text-transform: uppercase;
+                transition: all 0.3s ease 0s;
                 width: 100%;
+                border-color: $primary-color;
                 display: block;
-                &.checkout {
-                    background-color: #000;
+                height: 44px;
+                line-height: 44px;
+                text-align: center;
+                &:hover {
+                    background-color: $hover-color;
+                    border-color: $hover-color;
                     color: #fff;
                 }
-                // &:hover {
-                //    background-color: $primary-color;
-                //    border-color: $primary-color;
-                //    color: #fff;
-                //    cursor: pointer;
-                // }
+                &:active {
+                    background-color: $active-color;
+                    border-color: $active-color;
+                    color: #fff;
+                }
             }
         }
     }

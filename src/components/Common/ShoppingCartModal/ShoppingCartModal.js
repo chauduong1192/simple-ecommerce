@@ -1,16 +1,81 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {
-    // Container,
-    // Badge
-} from 'reactstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faTimes from '@fortawesome/fontawesome-free-solid/faTimes';
 
+import { connect } from 'react-redux';
+import { removeProductInCart, cartsSelectors } from '../../../state/ducks/carts';
+
 import './ShoppingCartModal.css';
 
+const urlImage = 'assets/images/products/';
 
 class ShoppingCartModal extends Component {
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            products: [],
+            isTotal: ''
+        };
+        this.remove = this.remove.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        // console.log(nextProps.total, 'carts');
+        nextProps.carts && this.getProducts(nextProps.carts);
+    }
+
+    componentDidMount() {
+        this.props.carts && this.getProducts(this.props.carts);
+    }
+
+    remove(productId) {
+        this.props.removeProductInCart(productId);
+        this.setState({
+            products: [...this.props.carts],
+            isTotal: this.props.total
+        });
+    }
+
+    getProducts(products) {
+        this.setState({
+            products,
+            isTotal: this.props.total
+        });
+    }
+
+    renderProducts(products) {
+       return products.map((product) =>
+            <li key={product.id} >
+                <div className="single-product">
+                    <div className="thumb">
+                        <a>
+                            <img src={`${urlImage}${product.images[0]}`} alt="banner" />
+                        </a>
+                    </div>
+                    <div className="details text-left">
+                        <h2>
+                            <a>
+                                {product.title}
+                            </a>
+                        </h2>
+                        <span className="d-block">
+                            <span>{product.quantity}</span>
+                            <span> x </span>
+                            <span>{product.newPrice}</span>
+                        </span>
+                    </div>
+                    <div className="remove">
+                        <a onClick={() => this.remove(product.id)}>
+                            <FontAwesomeIcon icon={faTimes} size="1x"/>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        )
+    }
+
     render() {
         return (
             <div className={`shopping-cart ${this.props.isShow && 'open'}`}>
@@ -20,47 +85,31 @@ class ShoppingCartModal extends Component {
                             <FontAwesomeIcon icon={faTimes} size="2x"/>
                         </a>
                     </div>
-                    <div className="cart-empty-title">
-                        <h2>Your cart is currently empty.</h2>
-                    </div>
-                    <div className="cart-wrap">
-                        <ul>
-                            <li>
-                                <div className="single-product">
-                                    <div className="thumb">
-                                        <a>
-                                            <img src="https://cdn.shopify.com/s/files/1/2508/8358/products/16_af000deb-7f2c-40c0-af34-6225fb7af5cd.jpg?v=1509598597" />
-                                        </a>
-                                    </div>
-                                    <div className="details text-left">
-                                        <h2>
-                                            <a>
-                                                Beautiful fita bag - xl / magenta / partex
-                                            </a>
-                                        </h2>
-                                        <span className="d-block">
-                                             1
-                                            <span> x</span>
-                                            <span> $80</span>
-                                        </span>
-                                    </div>
-                                    <div className="remove">
-                                        <a>
-                                            <FontAwesomeIcon icon={faTimes} size="1x"/>
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="cart-total">
-                        <span>Total:</span>
-                        <span>$100</span>
-                    </div>
-                    <div className="cart-btn">
-                        <a>View Cart</a>
-                        <a className="checkout">Checkout</a>
-                    </div>
+                    { this.state.products.length === 0 &&    
+                        <div className="cart-empty-title">
+                            <h2>Your cart is currently empty.</h2>
+                        </div>
+                    }
+                    { this.state.products.length > 0 &&
+                        <div>
+                            <div className="cart-wrap">
+                                <ul>
+                                    {
+                                        this.renderProducts(this.state.products)
+                                    }
+                                </ul>
+                            </div>
+                            
+                            <div className="cart-total">
+                                <span>Total:</span>
+                                <span>{this.state.isTotal}</span>
+                            </div>
+                            <div className="cart-btn">
+                                {/* <a>View Cart</a> */}
+                                <a className="btn-checkout">Checkout</a>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         );
@@ -70,8 +119,17 @@ class ShoppingCartModal extends Component {
 const propTypes = {
     isShow: PropTypes.bool.isRequired,
     recProp: PropTypes.func.isRequired,
+    carts: PropTypes.array.isRequired,
+    removeProductInCart: PropTypes.func.isRequired
 };
 
 ShoppingCartModal.propTypes = propTypes;
 
-export default ShoppingCartModal;
+export default connect(
+    state => ({
+        carts: cartsSelectors.getCarts(state),
+        total: cartsSelectors.getTotal(state),
+    }),{
+        removeProductInCart
+    },
+  )(ShoppingCartModal);

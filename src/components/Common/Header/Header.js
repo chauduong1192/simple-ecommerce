@@ -12,6 +12,8 @@ import {
 import {Link} from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faShoppingCart from '@fortawesome/fontawesome-free-solid/faShoppingCart';
+import { connect } from 'react-redux';
+import { cartsSelectors } from '../../../state/ducks/carts';
 
 import ShoppingCartModal from '../ShoppingCartModal';
 
@@ -29,10 +31,18 @@ class Header extends Component {
         this.state = {
             categories: [],
             isOpen: false,
-            isShow: false
+            isShow: false,
+            isCount : 0
         };
 
         this.recProp = this.recProp.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const isCount = nextProps.carts.length;
+        this.setState({
+            isCount
+        })
     }
 
     async componentDidMount() {
@@ -84,7 +94,9 @@ class Header extends Component {
                                 <NavItem>
                                     <NavLink className="cart-right" onClick={() => this.setState({isShow: true})}>
                                         <FontAwesomeIcon icon={faShoppingCart} size="lg"/>
-                                        <Badge color="danger">4</Badge>
+                                        {this.state.isCount !== 0 &&
+                                            <Badge color="danger">{this.state.isCount}</Badge>
+                                        }
                                     </NavLink>
                                 </NavItem>
                             </Nav>
@@ -98,4 +110,10 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default connect(
+    state => ({
+        carts: cartsSelectors.getCarts(state),
+    })
+  )(Header);
+// export default Header;
+

@@ -61,16 +61,25 @@
       .product-details .product-detail-right .quantity .cart-plus-minus .inc {
         position: absolute;
         right: 0; }
-  .product-details .product-detail-right .btn-buy-now {
-    color: #4b4b4b;
+  .product-details .product-detail-right .btn-checkout {
+    color: #fff;
+    background-color: #1293fe;
     font-size: 14px;
     text-transform: uppercase;
     transition: all 0.3s ease 0s;
     width: 100%;
-    border: 1px solid #d5d5d5;
+    border-color: #1293fe;
     display: block;
     height: 44px;
     line-height: 44px;
     text-align: center; }
+    .product-details .product-detail-right .btn-checkout:hover {
+      background-color: #34a2fe;
+      border-color: #34a2fe;
+      color: #fff; }
+    .product-details .product-detail-right .btn-checkout:active {
+      background-color: #0182ed;
+      border-color: #0182ed;
+      color: #fff; }
   .product-details .title h2 {
     font-size: 30px; }

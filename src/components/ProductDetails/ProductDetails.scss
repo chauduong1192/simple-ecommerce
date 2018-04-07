@@ -1,4 +1,6 @@
 $primary-color: #1293fe;
+$hover-color: #34a2fe;
+$active-color: #0182ed;
 
 .product-details {
     padding-top: 100px;
@@ -90,17 +92,28 @@ $primary-color: #1293fe;
                 }
             }
         }
-        .btn-buy-now {
-            color: #4b4b4b;
+        .btn-checkout {
+            color: #fff;
+            background-color: $primary-color;
             font-size: 14px;
             text-transform: uppercase;
             transition: all 0.3s ease 0s;
             width: 100%;
-            border: 1px solid #d5d5d5;
+            border-color: $primary-color;
             display: block;
             height: 44px;
             line-height: 44px;
             text-align: center;
+            &:hover {
+                background-color: $hover-color;
+                border-color: $hover-color;
+                color: #fff;
+            }
+            &:active {
+                background-color: $active-color;
+                border-color: $active-color;
+                color: #fff;
+            }
         }
     }
     .title {

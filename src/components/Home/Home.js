@@ -5,8 +5,10 @@ import {
     Col
 } from 'reactstrap';
 import {Link} from 'react-router-dom';
-import Product from '../Product'
+import { connect } from 'react-redux';
+import { addToCart, cartsSelectors } from '../../state/ducks/carts';
 
+import Product from '../Product'
 import {home} from '../../services/mockData/home';
 
 import './Home.css';
@@ -22,6 +24,8 @@ class Home extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props);
+        
         this.setState({
             bestSellers: home.bestSellers,
             collections: home.collections,
@@ -164,4 +168,11 @@ class Home extends Component {
     }
 }
 
-export default Home;
+// export default Home;
+export default connect(
+    state => ({
+        carts: cartsSelectors.getCarts(state),
+    }), {
+        addToCart,
+    },
+  )(Home);

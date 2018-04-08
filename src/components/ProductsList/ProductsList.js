@@ -4,9 +4,7 @@ import {
   Container,
   Row,
   Col,
-  // FormGroup,
-  // Input,
-  // Label
+  Input,
 } from 'reactstrap';
 // import {Link} from 'react-router-dom';
 
@@ -93,8 +91,14 @@ class ProductsList extends Component {
           </Col>
           <Col md="9" sm="12">
             <Row>
-                <Col md="12">
-                  <div>Sort abc</div>
+                <Col md="2">
+                  <Input type="select">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </Input>
                 </Col>
               </Row>
               <Row>

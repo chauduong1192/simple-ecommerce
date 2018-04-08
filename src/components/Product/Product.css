@@ -62,8 +62,10 @@
         color: #444444;
         font-size: 15px;
         font-weight: 600; }
-        .product-height .product .product-details h2 a:hover {
-          color: #1293fe; }
+        .product-height .product .product-details h2 a {
+          text-decoration: none; }
+          .product-height .product .product-details h2 a:hover {
+            color: #1293fe; }
       .product-height .product .product-details .product-price {
         display: flex;
         margin: 0;

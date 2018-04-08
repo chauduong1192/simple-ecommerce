@@ -17,9 +17,9 @@ const Product = ({product, ...rest}) => (
         <div className="product mt-5">
             <div className="product-inner">
                 <div className="pro-thumb">
-                    <a className="d-block">
+                    <Link to={`/products-detail/${product.slug}`} className="d-block">
                         <img src={`${urlImage}${product.images[0]}`} alt="banner" />
-                    </a>
+                    </Link>
                 </div>
                 <div className="product-to-info">
                     <ul className="action">
@@ -38,7 +38,7 @@ const Product = ({product, ...rest}) => (
             </div>
             <div className="product-details">
                 <h2>
-                    <a>{product.title}</a>
+                    <Link to={`/products-detail/${product.slug}`}>{product.title}</Link>
                 </h2>
                 <ul className="product-price">
                     <li className="old-price">

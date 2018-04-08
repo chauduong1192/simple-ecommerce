@@ -39,7 +39,9 @@ class Header extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const isCount = nextProps.carts.length;
+        console.log(nextProps.getTotalQuantity);
+        
+        const isCount = nextProps.getTotalQuantity;
         this.setState({
             isCount
         })
@@ -94,7 +96,7 @@ class Header extends Component {
                                 <NavItem>
                                     <NavLink className="cart-right" onClick={() => this.setState({isShow: true})}>
                                         <FontAwesomeIcon icon={faShoppingCart} size="lg"/>
-                                        {this.state.isCount !== 0 &&
+                                        {this.state.isCount > 0 &&
                                             <Badge color="danger">{this.state.isCount}</Badge>
                                         }
                                     </NavLink>
@@ -113,6 +115,7 @@ class Header extends Component {
 export default connect(
     state => ({
         carts: cartsSelectors.getCarts(state),
+        getTotalQuantity: cartsSelectors.getTotalQuantity(state),
     })
   )(Header);
 // export default Header;

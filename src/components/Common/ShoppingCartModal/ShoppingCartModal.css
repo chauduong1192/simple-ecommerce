@@ -21,6 +21,7 @@
     height: 100%; }
     .shopping-cart .inner .close-button {
       background-color: #eee;
+      opacity: 0.6;
       padding: 29px 50px 24px;
       position: absolute;
       right: 0;
@@ -68,6 +69,8 @@
             text-align: right;
             width: 20px;
             opacity: 0.5; }
+            .shopping-cart .inner .cart-wrap li .single-product .remove:hover {
+              color: #1293fe; }
     .shopping-cart .inner .cart-total {
       display: flex;
       justify-content: space-between;

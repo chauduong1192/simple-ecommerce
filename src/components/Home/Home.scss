@@ -82,8 +82,8 @@ $primary-color: #1293fe;
         &:hover {
             color: $primary-color;
             &:before {
-            background: $primary-color none repeat scroll 0 0;
-            width: 25px;  
+                background: $primary-color none repeat scroll 0 0;
+                width: 25px;  
             }
         }
         
@@ -104,6 +104,32 @@ $primary-color: #1293fe;
         }
         @media (max-width :767px) {
             width: 300px;
+        }
+        .products-carousel {
+            position: relative;
+            .wrap-carousel {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow: hidden;
+            }
+            %common {
+                position: absolute;
+                opacity: 0.5;
+                &:hover {
+                    color: $primary-color; 
+                    opacity: 1;
+                }
+            }
+            .arrow-left {
+                top: 165px;
+                left: -40px;
+                @extend %common;
+            }
+            .arrow-right {
+                top: 165px;
+                right: -40px;
+                @extend %common;
+            }
         }
     }
 }

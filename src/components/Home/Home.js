@@ -11,6 +11,10 @@ import { addToCart, cartsSelectors } from '../../state/ducks/carts';
 import Product from '../Product'
 import {home} from '../../services/mockData/home';
 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faAngleLeft from '@fortawesome/fontawesome-free-solid/faAngleLeft';
+import faAngleRight from '@fortawesome/fontawesome-free-solid/faAngleRight';
+
 import './Home.css';
 
 class Home extends Component {
@@ -21,6 +25,8 @@ class Home extends Component {
             collections: [],
             bestProducts: []
         }
+
+        this.handleScroll = this.handleScroll.bind(this);
     }
 
     componentDidMount() {
@@ -33,9 +39,15 @@ class Home extends Component {
         })
     }
 
+    handleScroll(type) {                
+        let wrap = document.getElementsByClassName('wrap-carousel')[0].scrollLeft;
+        document.getElementsByClassName('wrap-carousel')[0].scrollLeft = type ? (wrap + 285) : (wrap - 285);
+        
+    }
+
     renderProducts(products) {
         if(!products.length) return;
-        return products.map((product) => 
+        return products.map((product) =>
             <Product key={product.id} md="3" sm="6" xs="12" product={product} />
         )
     }
@@ -158,9 +170,23 @@ class Home extends Component {
                                 <h2>Best Product</h2>
                             </div>
                         </Col>
-                        {
-                            this.renderProducts(this.state.bestProducts)
-                        }                        
+                            <div className="products-carousel">
+                                <div className="wrap-carousel">
+                                    {
+                                        this.renderProducts(this.state.bestProducts)
+                                    }
+                                </div>
+                                <div className="arrow-left">
+                                    <a onClick={() => this.handleScroll(0)}>
+                                        <FontAwesomeIcon icon={faAngleLeft} size="3x"/>
+                                    </a>
+                                </div>
+                                <div className="arrow-right">
+                                    <a onClick={() => this.handleScroll(1)}>
+                                        <FontAwesomeIcon icon={faAngleRight} size="3x"/>
+                                    </a>
+                                </div>
+                            </div>                                               
                     </Row>
                 </Container>
             </div>

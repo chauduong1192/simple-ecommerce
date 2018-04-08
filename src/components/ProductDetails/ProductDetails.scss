@@ -67,29 +67,38 @@ $active-color: #0182ed;
             .cart-plus-minus {
                 display: flex;
                 position: relative;
-                &-box {
-                    padding: 0 20px;
-                    text-align: center;
-                    background: transparent;
-                    border: 0 none;
-                    max-width: 82px;
+                .select-quantity {
+                    border-radius: 0;
+                    width: 70px;
                     outline: none;
+                    &:focus {
+                        border-color: #ced4da;
+                        box-shadow: none;
+                    }
                 }
-                .button {
-                    color: #666666;
-                    font-size: 16px;
-                    cursor: pointer;
-                }
-                .dec {
-                    @extend .button;
-                    left: 0;
-                    position: absolute;
-                }
-                .inc {
-                    @extend .button;
-                    position: absolute;
-                    right: 0;
-                }
+                // &-box {
+                //     padding: 0 20px;
+                //     text-align: center;
+                //     background: transparent;
+                //     border: 0 none;
+                //     max-width: 82px;
+                //     outline: none;
+                // }
+                // .button {
+                //     color: #666666;
+                //     font-size: 16px;
+                //     cursor: pointer;
+                // }
+                // .dec {
+                //     @extend .button;
+                //     left: 0;
+                //     position: absolute;
+                // }
+                // .inc {
+                //     @extend .button;
+                //     position: absolute;
+                //     right: 0;
+                // }
             }
         }
         .btn-checkout {
@@ -99,11 +108,11 @@ $active-color: #0182ed;
             text-transform: uppercase;
             transition: all 0.3s ease 0s;
             width: 100%;
-            border-color: $primary-color;
             display: block;
             height: 44px;
             line-height: 44px;
             text-align: center;
+            border: 1px solid $primary-color;
             &:hover {
                 background-color: $hover-color;
                 border-color: $hover-color;

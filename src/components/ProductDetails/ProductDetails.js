@@ -4,7 +4,9 @@ import {
   Container,
   Row,
   Col,
-  // Button
+  Form,
+  Button,
+  Input
 } from 'reactstrap';
 
 import { connect } from 'react-redux';
@@ -23,12 +25,12 @@ class ProductDetails extends Component {
     this.state = {
       product: {},
       selectedImage: '',
-      quantity: 1
+      quantity: 1,
+      availableQuantity: 0
     };
 
+    this.onChange = this.onChange.bind(this);
     this.addToCart = this.addToCart.bind(this);
-    this.incQuantity = this.incQuantity.bind(this);
-    this.decQuantity = this.decQuantity.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -39,24 +41,16 @@ class ProductDetails extends Component {
     this.getProductDetails(this.props.match);
   }
 
-  async addToCart(cart) {
+  onChange(e) {
+    this.setState({ quantity: e.target.value });
+  }
+
+  async addToCart(product) {
+    if (+this.state.quantity > +product.availableQuantity) return;
     try{ 
-      await this.props.addToCart(Object.assign(cart, {quantity: this.quantity.value}));
+      await this.props.addToCart(Object.assign(product, {quantity: this.state.quantity}));
     }catch(error) {
       console.log(error);
-      
-    }
-  }
-
-  incQuantity() {
-    const quantity = parseInt(this.quantity.value) + 1;
-    this.setState({quantity})
-  }
-
-  decQuantity() {
-    if(parseInt(this.quantity.value)) {
-      const quantity = parseInt(this.quantity.value) - 1;
-      this.setState({quantity})
     }
   }
 
@@ -75,10 +69,22 @@ class ProductDetails extends Component {
     });
   }
 
+  renderOption(quantity) {
+    let items = [];
+    for(let i = 1; i <= quantity; i++) {
+      items = [...items, <option key={i} value={i}>{i}</option>]
+    }
+    return items;
+  }
+
   renderSmallImages(images) {
     if(!images.length) return;
     return images.map((image) =>
-      <li key={image} className="pot-small-img" onMouseEnter={() => this.setState({selectedImage: `${imageUrl}${image}`})}>
+      <li
+        key={image}
+        className="pot-small-img"
+        onMouseEnter={
+          () => this.setState({selectedImage: `${imageUrl}${image}`})}>
         <a className="d-block">
           <img className="w-100" src={`${imageUrl}${image}`}/>
         </a>
@@ -129,9 +135,21 @@ class ProductDetails extends Component {
                   <span>Quantity: </span>
                 </div>
                 <div className="cart-plus-minus">
-                  <input ref={(ref) => this.quantity = ref} className="cart-plus-minus-box" value={this.state.quantity} defaultValue={this.state.quantity}/>
+                  {/* <input type="number" min="1" max={product.availableQuantity || 1} className="cart-plus-minus-box" value={this.state.quantity} onChange={this.onChange} required/>
                   <div onClick={this.decQuantity} className="dec">-</div>
-                  <div onClick={this.incQuantity} className="inc">+</div>
+                  <div onClick={() => this.incQuantity(product)} className="inc">+</div> */}
+                  <Input
+                    className="select-quantity"
+                    type="select"
+                    name="quantity"
+                    id="quantity"
+                    onChange={this.onChange}
+                    value={this.state.quantity}
+                  >
+                    {
+                      this.renderOption(product.availableQuantity)
+                    } 
+                  </Input>
                 </div>
               </div>
               <div>
@@ -169,6 +187,7 @@ ProductDetails.propTypes = propTypes;
 export default connect(
   state => ({
       carts: cartsSelectors.getCarts(state),
+      getQuantityById: cartsSelectors.getQuantityById(state),
   }), {
       addToCart,
   },

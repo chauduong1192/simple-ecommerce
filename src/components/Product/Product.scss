@@ -83,6 +83,7 @@ $primary-color: #1293fe;
                 font-size: 15px;
                 font-weight: 600;
                 a {
+                    text-decoration: none;
                     &:hover {
                         color: $primary-color;
                     }

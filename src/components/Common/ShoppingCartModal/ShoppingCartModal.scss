@@ -26,6 +26,7 @@ $active-color: #0182ed;
         height: 100%;
         .close-button {
             background-color: #eee;
+            opacity: 0.6;
             padding: 29px 50px 24px;
             position: absolute;
             right: 0;
@@ -84,6 +85,9 @@ $active-color: #0182ed;
                         text-align: right;
                         width: 20px;
                         opacity: 0.5;
+                        &:hover {
+                            color: $primary-color;
+                        }
                     }
                 }
             }

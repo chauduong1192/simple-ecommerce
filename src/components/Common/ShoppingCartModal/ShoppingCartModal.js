@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faTimes from '@fortawesome/fontawesome-free-solid/faTimes';
+import faTimesCircle from '@fortawesome/fontawesome-free-regular/faTimesCircle';
 
 import { connect } from 'react-redux';
 import { removeProductInCart, cartsSelectors } from '../../../state/ducks/carts';
@@ -22,7 +22,6 @@ class ShoppingCartModal extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // console.log(nextProps.total, 'carts');
         nextProps.carts && this.getProducts(nextProps.carts);
     }
 
@@ -30,18 +29,22 @@ class ShoppingCartModal extends Component {
         this.props.carts && this.getProducts(this.props.carts);
     }
 
-    remove(productId) {
-        this.props.removeProductInCart(productId);
-        this.setState({
-            products: [...this.props.carts],
-            isTotal: this.props.total
-        });
+    async remove(productId) {
+        try {
+            await this.props.removeProductInCart(productId);
+            this.setState({
+                products: [...this.props.carts],
+                isTotal: this.props.totalPrice
+            });
+        } catch (error) {
+            console.log(error); 
+        }
     }
 
     getProducts(products) {
         this.setState({
             products,
-            isTotal: this.props.total
+            isTotal: this.props.totalPrice
         });
     }
 
@@ -63,12 +66,12 @@ class ShoppingCartModal extends Component {
                         <span className="d-block">
                             <span>{product.quantity}</span>
                             <span> x </span>
-                            <span>{product.newPrice}</span>
+                           <span>{`$${product.newPrice}`}</span>
                         </span>
                     </div>
                     <div className="remove">
                         <a onClick={() => this.remove(product.id)}>
-                            <FontAwesomeIcon icon={faTimes} size="1x"/>
+                           <FontAwesomeIcon icon={faTimesCircle} size="1x"/>
                         </a>
                     </div>
                 </div>
@@ -82,7 +85,7 @@ class ShoppingCartModal extends Component {
                 <div className="inner">
                     <div className="close-button">
                         <a onClick={this.props.recProp}>
-                            <FontAwesomeIcon icon={faTimes} size="2x"/>
+                            <FontAwesomeIcon icon={faTimesCircle} size="2x"/>
                         </a>
                     </div>
                     { this.state.products.length === 0 &&    
@@ -102,7 +105,7 @@ class ShoppingCartModal extends Component {
                             
                             <div className="cart-total">
                                 <span>Total:</span>
-                                <span>{this.state.isTotal}</span>
+                                <span>{`$${this.state.isTotal}`}</span>
                             </div>
                             <div className="cart-btn">
                                 {/* <a>View Cart</a> */}
@@ -128,7 +131,7 @@ ShoppingCartModal.propTypes = propTypes;
 export default connect(
     state => ({
         carts: cartsSelectors.getCarts(state),
-        total: cartsSelectors.getTotal(state),
+        totalPrice: cartsSelectors.getTotal(state),
     }),{
         removeProductInCart
     },

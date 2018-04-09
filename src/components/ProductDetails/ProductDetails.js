@@ -4,8 +4,6 @@ import {
   Container,
   Row,
   Col,
-  Form,
-  Button,
   Input
 } from 'reactstrap';
 
@@ -58,7 +56,7 @@ class ProductDetails extends Component {
     const matchNew = match.params.productId;
     const array = matchNew.split('-');
     const productId = array[array.length - 1];
-    PRODUCTS.filter((product) =>{
+    PRODUCTS.filter((product) => {
       if(product.id === productId){
         this.setState({
           product,
@@ -86,7 +84,7 @@ class ProductDetails extends Component {
         onMouseEnter={
           () => this.setState({selectedImage: `${imageUrl}${image}`})}>
         <a className="d-block">
-          <img className="w-100" src={`${imageUrl}${image}`}/>
+          <img className="w-100" src={`${imageUrl}${image}`} alt='small'/>
         </a>
       </li>
     );
@@ -110,7 +108,7 @@ class ProductDetails extends Component {
               <div className="product-big-image">
                 <div className="image-tab-content tab-content">
                   <div className="tab-pane fade in active">
-                    <img className="w-100" src={selectedImage}/>
+                    <img className="w-100" src={selectedImage} alt='big'/>
                   </div>
                 </div>
               </div>

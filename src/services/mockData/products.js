@@ -11,6 +11,9 @@ const PRODUCTS = [
         category: {
             id: '5abdb3d0e5f89d001a50ca97',
             title: 'Furnitures'
+        },
+        brand: {
+            name: 'Herman Miller'
         }
     },
     {
@@ -25,13 +28,16 @@ const PRODUCTS = [
         category: {
             id: '5abdb3d0e5f89d001a50ca97',
             title: 'Furnitures'
+        },
+        brand: {
+            name: 'Herman Miller'
         }
     },
     {
         id: '5ac1a389c2d5810019f9b385',
         title: 'Gold Ring',
         description: 'Tasteful for any occasion, the diamond-cut trim on this slim 14kt yellow gold band is the perfect understated detail for a discerning eye. Made in Italy. 14kt yellow gold ring.',
-        images: ['5ac1a389c2d5810019f9b385.jpg'],
+        images: ['5ac1a389c2d5810019f9b383.jpg'],
         oldPrice: 1200,
         newPrice: 1000,
         availableQuantity: 5,
@@ -39,13 +45,16 @@ const PRODUCTS = [
         category: {
             id: '5abdb3d0e5f89d001a50ca94',
             title: 'Jewelry'
+        },
+        brand: {
+            name: 'Tiffany & Co.'
         }
     },
     {
         id: '5ac1a389c2d5810019f9b383',
         title: 'Silver Ring',
         description: 'Mixed Metal Stacking Set, 14k Gold Filled Rings, Sterling Silver Rings, Sterling Silver Bead Ring, Etsy Gift Ideas',
-        images: ['5ac1a389c2d5810019f9b383.jpg'],
+        images: ['5ac1a389c2d5810019f9b385.jpg'],
         oldPrice: 600,
         newPrice: 500,
         availableQuantity: 5,
@@ -53,6 +62,9 @@ const PRODUCTS = [
         category: {
             id: '5abdb3d0e5f89d001a50ca94',
             title: 'Jewelry'
+        },
+        brand: {
+            name: 'PANDORA Jewelry US'
         }
     },
 ];

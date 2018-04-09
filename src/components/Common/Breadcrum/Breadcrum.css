@@ -1,5 +1,17 @@
-.breadcrum li a {
-  text-decoration: none;
-  color: #333; }
-  .breadcrum li a:hover {
-    color: #1293fe; }
+.breadcrum li {
+  display: inline-block;
+  margin-right: 10px;
+  text-transform: capitalize;
+  color: #343434; }
+  .breadcrum li a {
+    ext-decoration: none;
+    color: #333; }
+    .breadcrum li a:hover {
+      color: #1293fe; }
+    .breadcrum li a:after {
+      color: #343434;
+      content: "/";
+      font-size: 14px;
+      margin-left: 10px; }
+  .breadcrum li span {
+    opacity: 0.6; }

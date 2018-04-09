@@ -2,12 +2,25 @@ $primary-color: #1293fe;
 
 .breadcrum {
     li {
+        display: inline-block;
+        margin-right: 10px;
+        text-transform: capitalize;
+        color: #343434;
         a {
-            text-decoration: none;
+            ext-decoration: none;
             color: #333;
             &:hover {
                 color: $primary-color;
             }
+            &:after {
+                color: #343434;
+                content: "/";
+                font-size: 14px;
+                margin-left: 10px;
+            }
+        }
+        span {
+            opacity: 0.6;
         }
     }
 }

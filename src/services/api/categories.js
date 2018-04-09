@@ -1,8 +1,4 @@
-import qs from 'qs';
 import { categories } from '../mockData/categories';
-import { $get, $post, $put, $delete } from './base';
-
-const PATH = 'categories';
 
 const getCategories = (queryParams) => {
   try {

@@ -1,7 +1,7 @@
-import { default as categories } from './categories';
+import { default as products } from './products';
 import { default as carts } from './carts';
 
 export {
-  categories,
+  products,
   carts
 }

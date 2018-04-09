@@ -1,0 +1,5 @@
+const GET_PRODUCTS = 'PRODUCTS/GET_PRODUCTS';
+
+export {
+    GET_PRODUCTS,
+};

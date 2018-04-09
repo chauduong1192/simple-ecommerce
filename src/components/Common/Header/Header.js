@@ -9,7 +9,7 @@ import {
     NavLink,
     Badge
 } from 'reactstrap';
-import {Link} from 'react-router-dom';
+import {Link, NavLink as NavRouter} from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faShoppingCart from '@fortawesome/fontawesome-free-solid/faShoppingCart';
 import { connect } from 'react-redux';
@@ -74,7 +74,7 @@ class Header extends Component {
         if(!categories.length) return;
         return categories.map((category) => 
             <NavItem key={category.id}>
-                <Link className="nav-link" to={`/products/${category.slug}`}>{category.title}</Link>
+                <NavRouter activeClassName="selected" className="nav-link" to={`/products/${category.slug}`}>{category.title}</NavRouter>
             </NavItem>
         )
     }

@@ -87,7 +87,7 @@ class Home extends Component {
                                         <a>Comming Soon ...</a>
                                     </h4>
                                     <div className="feature-btn">
-                                        <a className="btn-shop-now" href="#" >Shop Now</a>
+                                        <a className="btn-shop-now" href="" >Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@ class Home extends Component {
                                                 <a>Lapm Collection</a>
                                             </h4>
                                             <div className="feature-btn">
-                                                <a className="btn-shop-now" href="#" >Shop Now</a>
+                                                <a className="btn-shop-now" href="" >Shop Now</a>
                                             </div>
                                         </div>
                                         {/* <div className="wrap-comming-soon"></div> */}
@@ -124,7 +124,7 @@ class Home extends Component {
                                                 <a>Bag Collection</a>
                                             </h4>
                                             <div className="feature-btn">
-                                                <a className="btn-shop-now" href="#" >Shop Now</a>
+                                                <a className="btn-shop-now" href="" >Shop Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +141,7 @@ class Home extends Component {
                                                 <a>New Clock</a>
                                             </h4>
                                             <div className="feature-btn">
-                                                <a className="btn-shop-now" href="#" >Shop Now</a>
+                                                <a className="btn-shop-now" href="" >Shop Now</a>
                                             </div>
                                         </div>
                                     </div>

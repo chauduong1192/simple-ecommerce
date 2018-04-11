@@ -78,23 +78,25 @@
       .shopping-cart .inner .cart-total span {
         font-size: 20px;
         font-weight: 500; }
-    .shopping-cart .inner .cart-btn .btn-checkout {
-      color: #fff;
-      background-color: #1293fe;
-      font-size: 14px;
-      text-transform: uppercase;
-      transition: all 0.3s ease 0s;
-      width: 100%;
-      border-color: #1293fe;
-      display: block;
-      height: 44px;
-      line-height: 44px;
-      text-align: center; }
-      .shopping-cart .inner .cart-btn .btn-checkout:hover {
-        background-color: #34a2fe;
-        border-color: #34a2fe;
-        color: #fff; }
-      .shopping-cart .inner .cart-btn .btn-checkout:active {
-        background-color: #0182ed;
-        border-color: #0182ed;
-        color: #fff; }
+    .shopping-cart .inner .cart-btn {
+      margin-bottom: 50px; }
+      .shopping-cart .inner .cart-btn .btn-checkout {
+        color: #fff;
+        background-color: #1293fe;
+        font-size: 14px;
+        text-transform: uppercase;
+        transition: all 0.3s ease 0s;
+        width: 100%;
+        border-color: #1293fe;
+        display: block;
+        height: 44px;
+        line-height: 44px;
+        text-align: center; }
+        .shopping-cart .inner .cart-btn .btn-checkout:hover {
+          background-color: #34a2fe;
+          border-color: #34a2fe;
+          color: #fff; }
+        .shopping-cart .inner .cart-btn .btn-checkout:active {
+          background-color: #0182ed;
+          border-color: #0182ed;
+          color: #fff; }

@@ -1,5 +1,6 @@
 import {
   ADD_TO_CART,
+  CHECKOUT,
   CHANGE_QUANTITY,
   REMOVE_PRODUCT_IN_CART,
   OPEN_CART,
@@ -27,11 +28,20 @@ const cartsReducer = (state = initialState, action) => {
       }else {
         newProduct.isError = false;
       }
+      // Add products in cart to localstore
+      const data = [...state.lists.filter(cart => cart.id !== newProduct.id), Object.assign({}, newProduct)];
+      localStorage.setItem('products-in-cart', JSON.stringify(data));
       return {
         lists: [...state.lists.filter(cart => cart.id !== newProduct.id), Object.assign({}, newProduct)],
         isModal: true
       }
     }
+    case CHECKOUT:
+      return {
+        ...state,
+        lists: [],
+        isModal: false,
+      }
     case CHANGE_QUANTITY: {
       const newProduct = action.cart;
       const oldProduct = state.lists.find(product => product.id === newProduct.id);
@@ -43,16 +53,25 @@ const cartsReducer = (state = initialState, action) => {
       }else {
         newProduct.isError = false;
       }
+      // Remove products-in-cart in localstore and set again.
+      const data = [...state.lists.filter(cart => cart.id !== newProduct.id), Object.assign({}, newProduct)];
+      localStorage.removeItem('products-in-cart');
+      localStorage.setItem('products-in-cart', JSON.stringify(data));
       return {
         lists: [...state.lists.filter(cart => cart.id !== newProduct.id), Object.assign({}, newProduct)],
         isModal: true
       }
     }
-    case REMOVE_PRODUCT_IN_CART:      
+    case REMOVE_PRODUCT_IN_CART: {
+      // Remove products-in-cart in localstore and set again.
+      const data = [...state.lists.filter(cart => cart.id !== action.cart)];
+      localStorage.removeItem('products-in-cart');
+      localStorage.setItem('products-in-cart', JSON.stringify(data));
       return {
         lists: [...state.lists.filter(cart => cart.id !== action.cart)],
         isModal: true
       }
+    }
     case OPEN_CART:      
       return {
         ...state,

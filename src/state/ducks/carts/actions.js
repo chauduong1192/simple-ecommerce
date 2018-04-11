@@ -1,5 +1,6 @@
 import {
     ADD_TO_CART,
+    CHECKOUT,
     CHANGE_QUANTITY,
     REMOVE_PRODUCT_IN_CART,
     OPEN_CART
@@ -10,6 +11,18 @@ const addToCart = cart => (dispatch) => {
         dispatch({
             type: ADD_TO_CART,
             cart
+        });
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+    }
+};
+
+const checkout = () => (dispatch) => {
+    try {
+        dispatch({
+            type: CHECKOUT,
+            cart: true
         });
     } catch (error) {
         // eslint-disable-next-line no-console
@@ -55,6 +68,7 @@ const openCart = bool => (dispatch) => {
 
 export {
     addToCart,
+    checkout,
     changeQuantity,
     removeProductInCart,
     openCart

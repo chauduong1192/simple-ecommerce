@@ -9,7 +9,15 @@
   .product-details .product-detail-left .product-big-image {
     width: 80%; }
     .product-details .product-detail-left .product-big-image .fade.in {
-      opacity: 1; }
+      opacity: 1;
+      position: relative; }
+      .product-details .product-detail-left .product-big-image .fade.in .sold-out-tag {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 15px;
+        color: #fff;
+        background-color: rgba(78, 89, 93, 0.7); }
   .product-details .product-detail-right .title h2 {
     color: #444444;
     font-size: 30px;

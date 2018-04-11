@@ -3,8 +3,8 @@ import {
 } from './types';
 import {ProductAPI} from '../../../services/api'
 
-const getProducts = (id) => async (dispatch) => {
-    const products = await ProductAPI.getProducts(id);
+const getProducts = () => async (dispatch) => {
+    const products = await ProductAPI.getProducts();
     try {
         dispatch({
             type: GET_PRODUCTS,

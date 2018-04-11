@@ -1,0 +1,91 @@
+$primary-color: #1293fe;
+
+.cart-checkout {
+    margin-top: 100px;
+    input {
+        border-radius: 0;
+        font-weight: 100;
+        font-size: 14px;
+    }
+    button {
+        border-radius: 0;
+    }
+    .steps {
+        display: flex;
+        flex-wrap: wrap;
+        // margin: 0 0 22px;
+        .step {
+            font-size: 12px;
+            position: relative;
+            padding: 12px 20px;
+            margin: 0;
+            color: #a3afb7;
+            vertical-align: top;
+            background-color: #f3f7f9;
+            border-radius: 0;
+            &.done {
+                color: #fff;
+                background-color: #11c26d;
+            }
+            &.active,
+            &.current, {
+                color: #fff;
+                background-color: $primary-color;
+                & .step-number {
+                    color: #3e8ef7;
+                    background-color: #fff;
+                }
+            }
+            &.disable {
+                .step-title {
+                    color: #ccd5db;
+                }
+                color: #ccd5db;
+                pointer-events: none;
+                cursor: auto;
+            }
+        }
+        .step-number {
+            width: 30px;
+            height: 30px;
+            font-size: 24px;
+            line-height: 30px;
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            color: #fff;
+            text-align: center;
+            background: #e4eaec;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        .step-desc {
+            min-height: 30px;
+            margin-left: 40px;
+            text-align: left;
+            .step-title {
+                color: #fff;
+                font-size: 17px;
+                margin-bottom: 0;
+                font-weight: 300;
+            }
+            p {
+                margin: 0;
+            }
+        }
+    }
+    .card-image {
+        width: 50%;
+        margin-top: 25px;
+        text-align: right;
+        img {
+            margin-left: 5px;
+        }
+    }
+    .confirm-form {
+        border: 1px #d9d9d9 solid;
+        overflow: hidden;
+    }
+
+    
+}

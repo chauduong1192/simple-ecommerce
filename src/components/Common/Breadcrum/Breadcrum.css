@@ -4,7 +4,7 @@
   text-transform: capitalize;
   color: #343434; }
   .breadcrum li a {
-    ext-decoration: none;
+    text-decoration: none;
     color: #333; }
     .breadcrum li a:hover {
       color: #1293fe; }

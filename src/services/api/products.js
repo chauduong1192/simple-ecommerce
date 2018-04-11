@@ -1,9 +1,8 @@
 import PRODUCTS from '../mockData/products';
 
 const getProducts = async (queryParams) => {
-  const categoryId = await queryParams.categoryId;
   try {
-    const res = PRODUCTS.filter((product) => product.category.id === categoryId);
+    const res = await PRODUCTS;
 
     return res;
   } catch (error) {

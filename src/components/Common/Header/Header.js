@@ -9,15 +9,14 @@ import {
     NavLink,
     Badge
 } from 'reactstrap';
-import {Link, NavLink as NavRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faShoppingCart from '@fortawesome/fontawesome-free-solid/faShoppingCart';
 import { connect } from 'react-redux';
-import { cartsSelectors } from '../../../state/ducks/carts';
+import { openCart, cartsSelectors } from '../../../state/ducks/carts';
 
 import ShoppingCartModal from '../ShoppingCartModal';
 
-import { CategoryAPI } from '../../../services/api';
 import { APP } from "../../../config";
 
 import './Header.css';
@@ -29,33 +28,21 @@ class Header extends Component {
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            categories: [],
+            // categories: [],
             isOpen: false,
-            isShow: false,
-            isCount : 0
+            isCount : 0,
+            isShowModal: false
         };
-
-        this.recProp = this.recProp.bind(this);
+        this.openCartModal = this.openCartModal.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.getTotalQuantity);
-        
         const isCount = nextProps.getTotalQuantity;
+        const isShowModal = nextProps.getIsModal;
         this.setState({
-            isCount
+            isCount,
+            isShowModal
         })
-    }
-
-    async componentDidMount() {
-        try {
-            const categories = await CategoryAPI.getCategories();
-            this.setState({
-                categories
-            })
-        }catch(error) {
-            console.log(error);
-        }
     }
 
     toggle() {
@@ -64,19 +51,11 @@ class Header extends Component {
         });
     }
 
-    recProp() {
+    async openCartModal(bool) {
+        await this.props.openCart(bool);
         this.setState({
-            isShow: false
+            isShowModal: this.props.getIsModal
         });
-    }
-
-    renderCategories(categories) {
-        if(!categories.length) return;
-        return categories.map((category) => 
-            <NavItem key={category.id}>
-                <NavRouter activeClassName="selected" className="nav-link" to={`/products/${category.slug}`}>{category.title}</NavRouter>
-            </NavItem>
-        )
     }
 
     render() {
@@ -87,14 +66,9 @@ class Header extends Component {
                         <Link className="navbar-brand" to="/">{APP.name}</Link>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
-                            <Nav className="mr-auto" navbar>
-                            {
-                                this.renderCategories(this.state.categories)
-                            }
-                            </Nav>
-                            <Nav navbar>
+                            <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink className="cart-right" onClick={() => this.setState({isShow: true})}>
+                                    <NavLink className="cart-right" onClick={() => this.openCartModal(true)}>
                                         <FontAwesomeIcon icon={faShoppingCart} size="lg"/>
                                         {this.state.isCount > 0 &&
                                             <Badge color="danger">{this.state.isCount}</Badge>
@@ -105,8 +79,11 @@ class Header extends Component {
                         </Collapse>
                     </Container>
                 </Navbar>
-                <div className={`body-overlay ${this.state.isShow && 'is-visible'}`} onClick={() => this.setState({isShow: false})}></div>
-                <ShoppingCartModal isShow={this.state.isShow}  recProp={this.recProp}/>
+                <div className={`body-overlay ${this.state.isShowModal && 'is-visible'}`} onClick={() => this.openCartModal(false)}></div>
+                <ShoppingCartModal
+                    isShowModal={this.state.isShowModal}
+                    openCartModal={this.openCartModal}
+                />
             </div>
         );
     }
@@ -116,7 +93,8 @@ export default connect(
     state => ({
         carts: cartsSelectors.getCarts(state),
         getTotalQuantity: cartsSelectors.getTotalQuantity(state),
-    })
-  )(Header);
-// export default Header;
-
+        getIsModal: cartsSelectors.getIsModal(state),
+    }), {
+        openCart
+    }
+)(Header);

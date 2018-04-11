@@ -9,7 +9,9 @@ const Breadcrum = ({url}) => (
             <Link to="/">Home</Link>
         </li>
         <li>
-            <span className="text-capitalize">{url.split('/')[1]}</span>
+            <span className="text-capitalize">
+                {`${url.split('-')[0]} ${url.split('-')[1]}`}
+            </span>
         </li>
     </ul>
 )

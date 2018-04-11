@@ -1,5 +1,8 @@
 .footer {
-  background-color: #f3f3f3; }
+  background-color: #f3f3f3;
+  position: fixed;
+  bottom: 0;
+  width: 100%; }
   .footer .row {
     padding: 10px;
     justify-content: space-between; }

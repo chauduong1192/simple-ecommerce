@@ -52,9 +52,9 @@
             .shopping-cart .inner .cart-wrap li .single-product .thumb a {
               display: block; }
               .shopping-cart .inner .cart-wrap li .single-product .thumb a img {
-                max-width: 60px; }
+                max-width: 100px; }
           .shopping-cart .inner .cart-wrap li .single-product .details {
-            min-width: 71%; }
+            min-width: 70%; }
             .shopping-cart .inner .cart-wrap li .single-product .details h2 {
               border-top-width: 0;
               color: #000;

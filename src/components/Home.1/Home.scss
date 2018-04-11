@@ -55,7 +55,7 @@ $primary-color: #1293fe;
             }
             .details {
                 margin-top: 10px;
-                span {
+                a {
                     font-size: 16px;
                     font-weight: 500;
                     line-height: 2;
@@ -63,7 +63,7 @@ $primary-color: #1293fe;
                 }
             }
             &:hover {
-                .details span {
+                .details a {
                     color: $primary-color;
                     cursor: pointer;
                 }

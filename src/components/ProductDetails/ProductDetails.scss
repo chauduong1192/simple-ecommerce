@@ -18,6 +18,15 @@ $active-color: #0182ed;
             width: 80%;
             .fade.in {
                 opacity: 1;
+                position: relative;
+                .sold-out-tag {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    padding: 15px;
+                    color: #fff;
+                    background-color: rgba(78,89,93,.7);
+                }
             }
         }
     }
@@ -76,29 +85,6 @@ $active-color: #0182ed;
                         box-shadow: none;
                     }
                 }
-                // &-box {
-                //     padding: 0 20px;
-                //     text-align: center;
-                //     background: transparent;
-                //     border: 0 none;
-                //     max-width: 82px;
-                //     outline: none;
-                // }
-                // .button {
-                //     color: #666666;
-                //     font-size: 16px;
-                //     cursor: pointer;
-                // }
-                // .dec {
-                //     @extend .button;
-                //     left: 0;
-                //     position: absolute;
-                // }
-                // .inc {
-                //     @extend .button;
-                //     position: absolute;
-                //     right: 0;
-                // }
             }
         }
         .btn-checkout {

@@ -7,18 +7,19 @@ import configureStore from './state';
 import Header from './components/Common/Header';
 import Footer from './components/Common/Footer';
 import Content from './components/Common/Content';
+
 import routes from './routes';
 
 import './App.css';
 
 const store = configureStore(window.REDUX_INITIAL_DATA);
 
-const App = () => (
+const App = props => (
     <ReduxProvider store={store}>
         <Router>
             <div className="app">
-                <Header/>
-
+                <Header />
+                
                 <Content>
                     <Switch>
                         {routes.map(route => (

@@ -39,12 +39,12 @@
         height: 300px; }
       .home .best-seller .new-product .details {
         margin-top: 10px; }
-        .home .best-seller .new-product .details span {
+        .home .best-seller .new-product .details a {
           font-size: 16px;
           font-weight: 500;
           line-height: 2;
           color: #333; }
-      .home .best-seller .new-product:hover .details span {
+      .home .best-seller .new-product:hover .details a {
         color: #1293fe;
         cursor: pointer; }
   .home .btn-shop-now {

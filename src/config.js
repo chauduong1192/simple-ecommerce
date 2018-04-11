@@ -11,4 +11,3 @@ export const APP = {
     github: 'https://github.com/chauduong1192',
   },
 };
-

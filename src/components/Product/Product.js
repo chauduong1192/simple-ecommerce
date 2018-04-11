@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    Col
+    Col,
 } from 'reactstrap';
 import {Link} from 'react-router-dom';
+
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faShoppingCart from '@fortawesome/fontawesome-free-solid/faShoppingCart';
-import faEye from '@fortawesome/fontawesome-free-solid/faEye';
-
-import './Product.css';
 
 const urlImage = 'assets/images/products/';
 
-const Product = ({product, ...rest}) => (
+const Product = ({product, addToCart, ...rest}) => (
     <Col {...rest} className="product-height">
         <div className="product mt-5">
             <div className="product-inner">
@@ -21,20 +19,23 @@ const Product = ({product, ...rest}) => (
                         <img src={`${urlImage}${product.images[0]}`} alt="banner" />
                     </Link>
                 </div>
-                <div className="product-to-info">
-                    <ul className="action">
-                        <li>
-                            <Link to={`/products-detail/${product.slug}`}>
-                                <FontAwesomeIcon icon={faEye}/>
-                            </Link>
-                        </li>
-                        <li>
-                            <a>
-                                <FontAwesomeIcon icon={faShoppingCart}/>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                { product.availableQuantity > 0 && 
+                    <div className="add-to-cart-button">
+                        <a onClick={addToCart}>
+                            <FontAwesomeIcon icon={faShoppingCart}/> Add to cart
+                        </a>
+                    </div>
+                }
+                { product.availableQuantity < 3 && product.availableQuantity > 0 &&
+                    <div className="few-left-overlay">
+                        <span>Few Left</span>
+                    </div>
+                }
+                { product.availableQuantity === 0 && 
+                    <div className="sold-out-overlay">
+                        <div className="sold-out-text">Sold Out</div>
+                    </div>
+                }
             </div>
             <div className="product-details">
                 <h2>
@@ -55,6 +56,7 @@ const Product = ({product, ...rest}) => (
 
 const propTypes = {
     product: PropTypes.object.isRequired,
+    addToCart: PropTypes.func.isRequired,
     md: PropTypes.string.isRequired,
     sm: PropTypes.string.isRequired,
     xs: PropTypes.string.isRequired,

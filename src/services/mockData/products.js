@@ -6,15 +6,8 @@ const PRODUCTS = [
         images: ['5ac1a403c2d5810019f9b387.jpg', '5ac1a389c2d5810019f9b386.jpg'],
         oldPrice: 130,
         newPrice: 100,
-        availableQuantity: 5,
+        availableQuantity: 2,
         slug: 'lounge-chair-5ac1a403c2d5810019f9b387',
-        category: {
-            id: '5abdb3d0e5f89d001a50ca97',
-            title: 'Furnitures'
-        },
-        brand: {
-            name: 'Herman Miller'
-        }
     },
     {
         id: '5ac1a389c2d5810019f9b386',
@@ -25,47 +18,46 @@ const PRODUCTS = [
         newPrice: 20,
         availableQuantity: 6,
         slug: 'wooden-chair-5ac1a389c2d5810019f9b386',
-        category: {
-            id: '5abdb3d0e5f89d001a50ca97',
-            title: 'Furnitures'
-        },
-        brand: {
-            name: 'Herman Miller'
-        }
     },
     {
         id: '5ac1a389c2d5810019f9b385',
-        title: 'Gold Ring',
+        title: 'Silver Ring',
         description: 'Tasteful for any occasion, the diamond-cut trim on this slim 14kt yellow gold band is the perfect understated detail for a discerning eye. Made in Italy. 14kt yellow gold ring.',
-        images: ['5ac1a389c2d5810019f9b383.jpg'],
+        images: ['5ac1a389c2d5810019f9b385.jpg'],
         oldPrice: 1200,
         newPrice: 1000,
         availableQuantity: 5,
-        slug: 'gold-ring-5ac1a389c2d5810019f9b385',
-        category: {
-            id: '5abdb3d0e5f89d001a50ca94',
-            title: 'Jewelry'
-        },
-        brand: {
-            name: 'Tiffany & Co.'
-        }
+        slug: 'silver-ring-5ac1a389c2d5810019f9b385',
     },
     {
         id: '5ac1a389c2d5810019f9b383',
-        title: 'Silver Ring',
+        title: 'Gold Ring',
         description: 'Mixed Metal Stacking Set, 14k Gold Filled Rings, Sterling Silver Rings, Sterling Silver Bead Ring, Etsy Gift Ideas',
-        images: ['5ac1a389c2d5810019f9b385.jpg'],
+        images: ['5ac1a389c2d5810019f9b383.jpg'],
         oldPrice: 600,
         newPrice: 500,
-        availableQuantity: 5,
-        slug: 'silver-ring-5ac1a389c2d5810019f9b383',
-        category: {
-            id: '5abdb3d0e5f89d001a50ca94',
-            title: 'Jewelry'
-        },
-        brand: {
-            name: 'PANDORA Jewelry US'
-        }
+        availableQuantity: 0,
+        slug: 'gold-ring-5ac1a389c2d5810019f9b383',
+    },
+    {
+        id: '5ac1a389c2d5810019f9b382',
+        title: '3D Earring Silver Plated',
+        description: 'Long Way Bridal Wedding Jewelry Beautiful Dazzle Crystal Dangle Fashion 3D Earring Silver Plated',
+        images: ['5ac1a389c2d5810019f9b382.jpg'],
+        oldPrice: 100,
+        newPrice: 50,
+        availableQuantity: 10,
+        slug: 'earring-silver-5ac1a389c2d5810019f9b382',
+    },
+    {
+        id: '5ac1a389c2d5810019f9b381',
+        title: 'Honey-Can-Do SFT-01003 Hanging Closet Organizer, Bamboo/Canvas, 6-Shelf',
+        description: 'Mixed Metal Stacking Set, 14k Gold Filled Rings, Sterling Silver Rings, Sterling Silver Bead Ring, Etsy Gift Ideas',
+        images: ['5ac1a389c2d5810019f9b381.jpg'],
+        oldPrice: 200,
+        newPrice: 100,
+        availableQuantity: 2,
+        slug: 'honey-can-do-5ac1a389c2d5810019f9b381',
     },
 ];
 export default PRODUCTS;

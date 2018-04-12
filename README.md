@@ -1,6 +1,6 @@
 # leflair code challenge
 
-# <img src="./public/assets/images/background.png?raw=true" width="500">
+# <img src="./public/assets/images/background.png?raw=true" width="1000">
 
 ## Requirements
 
@@ -32,5 +32,4 @@ and the website is available at http://localhost:3000
 
 ## Author
 
-- ChauDuong | [Mail](chau.duong@softfoundry.com)
-```
+- ChauDuong | [Mail](chau.duong1192@gmail.com) | [Github](https://github.com/chauduong1192)

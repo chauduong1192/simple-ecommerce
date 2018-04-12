@@ -13,7 +13,10 @@ import {
 } from 'reactstrap';
 
 import { connect } from 'react-redux';
-import { checkout, cartsSelectors } from '../../state/ducks/carts';
+import {
+  checkout,
+  cartsSelectors
+} from '../../state/ducks/carts';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faCheck from '@fortawesome/fontawesome-free-solid/faCheck';
@@ -26,41 +29,128 @@ class CartCheckout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email : 'chau.duong1192@gmail.com',
-      fullName: 'Chau Duong',
-      address: '117/62/8 Nguyen Huu Canh',
-      district: 'Binh Thanh District',
-      city: 'Ho Chi Minh',
-      phoneNumber: '01696031616',
+      email : '',
+      fullName: '',
+      address: '',
+      district: '',
+      city: '',
+      phoneNumber: '',
       isSelect: 'cash',
       deliveryCost: 5,
       activeTab: 1,
+      steps: [
+        {
+          name: 'account',
+          desc: 'Information',
+          statusClass: 'current active'
+        }, {
+          name: 'billing',
+          desc: 'Information',
+          statusClass: 'disable'
+        }, {
+          name: 'getting',
+          desc: 'Waiting for the goods',
+          statusClass: 'disable'
+        }
+      ]
     }
 
     this.saveInfo = this.saveInfo.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.editInfo = this.editInfo.bind(this);
   }
 
   componentDidMount() {
     !this.props.carts.length && this.props.history.push('/');
+    // get user info to localstore
+    const user = JSON.parse(localStorage.getItem('user-info'));
+
+    if(user) {
+      this.setState({
+        activeTab: 2,
+        steps: [
+          {
+            ...this.state.steps[0],
+            statusClass: 'done'
+          }, {
+            ...this.state.steps[1],
+            statusClass: 'current active'
+          }, {
+            ...this.state.steps[2],
+            statusClass: 'disable'
+          }
+        ],
+        email: user.email,
+        fullName: user.fullName,
+        address: user.address,
+        district: user.district,
+        city: user.city,
+        phoneNumber: user.phoneNumber,
+      });
+    }
+
   }
 
   async saveInfo(e) {
     e.preventDefault();
     if(this.state.activeTab === 1) {
+      // Save user info to localstore.
+      localStorage.setItem('user-info', JSON.stringify(this.state));
       this.setState({
-        activeTab: 2
+        activeTab: 2,
+        steps: [
+          {
+            ...this.state.steps[0],
+            statusClass: 'done'
+          }, {
+            ...this.state.steps[1],
+            statusClass: 'current active'
+          }, {
+            ...this.state.steps[2],
+            statusClass: 'disable'
+          }
+        ],
       })
       return;
     }
 
     if(this.state.activeTab === 2) {
       this.setState({
-        activeTab: 3
+        activeTab: 3,
+        steps: [
+          {
+            ...this.state.steps[0],
+            statusClass: 'done'
+          }, {
+            ...this.state.steps[1],
+            statusClass: 'done'
+          }, {
+            ...this.state.steps[2],
+            statusClass: 'current active'
+          }
+        ],
       })
       await this.props.checkout();
       return;
     }
+  }
+
+  editInfo () {
+    this.setState({
+        activeTab: 1,
+        steps: [
+          {
+            ...this.state.steps[0],
+            statusClass: 'current active'
+          }, {
+            ...this.state.steps[1],
+            statusClass: 'disable'
+          }, {
+            ...this.state.steps[2],
+            statusClass: 'disable'
+          }
+        ],
+    })
   }
 
   onChange(event) {
@@ -88,6 +178,18 @@ class CartCheckout extends Component {
       </tr>
     )
   }
+  
+  renderSteps(steps) {
+    return steps.map((step, index) => 
+      <Col key={step.name} lg="4" className={`step ${step.statusClass}`}>
+        <span className="step-number">{index + 1}</span>
+        <div className="step-desc">
+          <span className="step-title text-capitalize">{step.name}</span>
+          <p>{step.desc}</p>
+        </div>
+      </Col>
+    ) 
+  }
 
   render() {
 
@@ -107,27 +209,9 @@ class CartCheckout extends Component {
       <Container className="cart-checkout">
         <Row>
           <Col className="steps mb-4" sm="12" md={{ size: 8, offset: 2 }}>
-            <Col lg="4" className={`step ${activeTab === 1 ? 'current active' : 'disable'}`}>
-                <span className="step-number">1</span>
-                <div className="step-desc">
-                  <span className="step-title">Account</span>
-                  <p>Information</p>
-                </div>
-            </Col>
-            <Col lg="4" className={`step ${activeTab === 2 ? 'current active' : 'disable'}`}>
-                <span className="step-number">2</span>
-                <div className="step-desc">
-                  <span className="step-title">Billing</span>
-                  <p>Information</p>
-                </div>
-            </Col>
-            <Col lg="4" className={`step ${activeTab === 3 ? 'current active' : 'disable'}`}>
-                <span className="step-number">3</span>
-                <div className="step-desc">
-                  <span className="step-title">Getting</span>
-                  <p>Wating for the goods</p>
-                </div>
-            </Col>
+            {
+              this.renderSteps(this.state.steps)
+            }
           </Col>
             <Col sm="12" md={{ size: 8, offset: 2 }}>
               <Form onSubmit={this.saveInfo}>
@@ -135,27 +219,80 @@ class CartCheckout extends Component {
                   <div>
                     <FormGroup>
                       <Label for="email">Email</Label>
-                      <Input type="email" name="email" id="email" placeholder="Email" required value={email} onChange={this.onChange}/>
+                      <Input
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Email"
+                        required
+                        value={email}
+                        onChange={this.onChange}
+                      />
                     </FormGroup>
                     <FormGroup>
                       <Label for="fullName">Full name</Label>
-                      <Input type="text" name="fullName" id="fullName" placeholder="Full Name" required value={fullName} onChange={this.onChange}/>
+                      <Input
+                        type="text"
+                        name="fullName"
+                        id="fullName"
+                        placeholder="Full Name"
+                        maxLength="20"
+                        required
+                        value={fullName}
+                        onChange={this.onChange}
+                      />
                     </FormGroup>
                     <FormGroup>
                       <Label for="address">Address</Label>
-                      <Input type="text" name="address" id="address" placeholder="Address" required value={address} onChange={this.onChange}/>
+                      <Input
+                        type="text"
+                        name="address"
+                        id="address"
+                        placeholder="Address"
+                        maxLength="40"
+                        required
+                        value={address}
+                        onChange={this.onChange}
+                      />
                     </FormGroup>
                     <FormGroup>
                       <Label for="district">District</Label>
-                      <Input type="text" name="district" id="district" placeholder="District" required value={district} onChange={this.onChange} />
+                      <Input
+                        type="text"
+                        name="district"
+                        id="district"
+                        placeholder="District"
+                        maxLength="20"
+                        required
+                        value={district}
+                        onChange={this.onChange}
+                      />
                     </FormGroup>
                     <FormGroup>
                       <Label for="city">City</Label>
-                      <Input type="text" name="city" id="city" placeholder="City" required value={city} onChange={this.onChange}/>
+                      <Input
+                        type="text"
+                        name="city"
+                        id="city"
+                        placeholder="City"
+                        maxLength="20"
+                        required
+                        value={city}
+                        onChange={this.onChange}
+                      />
                     </FormGroup>
                     <FormGroup>
                       <Label for="phoneNumber">Phone number</Label>
-                      <Input type="tel" name="phoneNumber" id="phoneNumber" placeholder="Phone number" required value={phoneNumber} onChange={this.onChange}/>
+                      <Input
+                        type="tel"
+                        name="phoneNumber"
+                        id="phoneNumber"
+                        placeholder="Phone number"
+                        maxLength="11"
+                        required
+                        value={phoneNumber}
+                        onChange={this.onChange}
+                      />
                     </FormGroup>
                   </div>
                 }
@@ -164,11 +301,12 @@ class CartCheckout extends Component {
                     <Col md="5">
                       <div className="p-3 mt-3 confirm-form">
                         <h5>Customer infomation</h5>
-                        <div className="">
+                        <div>
                           <p className="mb-0 font-weight-bold">Customer name</p>
                           <p>{`${fullName} - ${phoneNumber}`}</p>
                           <p className="mb-0 font-weight-bold">Ship to</p>
                           <p>{`${address}, ${district}, ${city}`}</p>
+                          <a onClick={this.editInfo} className="text-primary">Edit</a>
                         </div>
                       </div>
                       <div className="p-3 mt-3 confirm-form">
@@ -295,6 +433,6 @@ export default connect(
     carts: cartsSelectors.getCarts(state),
     totalPrice: cartsSelectors.getTotal(state),
   }), {
-    checkout
+    checkout,
   },
 )(CartCheckout);

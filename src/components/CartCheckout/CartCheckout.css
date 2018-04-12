@@ -21,6 +21,9 @@
       .cart-checkout .steps .step.done {
         color: #fff;
         background-color: #11c26d; }
+        .cart-checkout .steps .step.done .step-number {
+          color: #11c26d;
+          background-color: #fff; }
       .cart-checkout .steps .step.active, .cart-checkout .steps .step.current {
         color: #fff;
         background-color: #1293fe; }

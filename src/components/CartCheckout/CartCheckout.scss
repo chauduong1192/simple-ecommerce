@@ -26,6 +26,11 @@ $primary-color: #1293fe;
             &.done {
                 color: #fff;
                 background-color: #11c26d;
+                .step-number {
+                    color: #11c26d;
+                    background-color: #fff;
+                }
+
             }
             &.active,
             &.current, {

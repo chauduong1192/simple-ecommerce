@@ -1,5 +1,6 @@
 import {
   ADD_TO_CART,
+  ADD_LOCAL_DATA_TO_CART,
   CHECKOUT,
   CHANGE_QUANTITY,
   REMOVE_PRODUCT_IN_CART,
@@ -37,6 +38,8 @@ const cartsReducer = (state = initialState, action) => {
       }
     }
     case CHECKOUT:
+      // Set products-in-cart in localstore to empty array.
+      localStorage.setItem('products-in-cart', JSON.stringify([]));
       return {
         ...state,
         lists: [],
@@ -72,10 +75,15 @@ const cartsReducer = (state = initialState, action) => {
         isModal: true
       }
     }
-    case OPEN_CART:      
+    case OPEN_CART:   
       return {
         ...state,
         isModal: action.isModal
+      }
+    case ADD_LOCAL_DATA_TO_CART:
+      return {
+        ...state,
+        lists: [...action.carts]
       }
     default:
       return state;

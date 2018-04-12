@@ -1,5 +1,6 @@
 import {
     ADD_TO_CART,
+    ADD_LOCAL_DATA_TO_CART,
     CHECKOUT,
     CHANGE_QUANTITY,
     REMOVE_PRODUCT_IN_CART,
@@ -11,6 +12,18 @@ const addToCart = cart => (dispatch) => {
         dispatch({
             type: ADD_TO_CART,
             cart
+        });
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+    }
+};
+
+const addLocalDataToCart = carts => (dispatch) => {
+    try {
+        dispatch({
+            type: ADD_LOCAL_DATA_TO_CART,
+            carts
         });
     } catch (error) {
         // eslint-disable-next-line no-console
@@ -68,8 +81,9 @@ const openCart = bool => (dispatch) => {
 
 export {
     addToCart,
+    addLocalDataToCart,
     checkout,
     changeQuantity,
     removeProductInCart,
-    openCart
+    openCart,
 };

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {
     Container,
     Collapse,
@@ -13,7 +14,11 @@ import {Link} from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faShoppingCart from '@fortawesome/fontawesome-free-solid/faShoppingCart';
 import { connect } from 'react-redux';
-import { openCart, cartsSelectors } from '../../../state/ducks/carts';
+import {
+    openCart,
+    addLocalDataToCart,
+    cartsSelectors
+} from '../../../state/ducks/carts';
 
 import ShoppingCartModal from '../ShoppingCartModal';
 
@@ -31,7 +36,7 @@ class Header extends Component {
             // categories: [],
             isOpen: false,
             isCount : 0,
-            isShowModal: false
+            isShowModal: false,
         };
         this.openCartModal = this.openCartModal.bind(this);
     }
@@ -41,20 +46,29 @@ class Header extends Component {
         const isShowModal = nextProps.getIsModal;
         this.setState({
             isCount,
-            isShowModal
+            isShowModal,
         })
+    }
+
+    async componentDidMount() {
+        const products = localStorage.getItem("products-in-cart") && JSON.parse(localStorage.getItem("products-in-cart"));
+        if(products) {
+            await this.props.addLocalDataToCart(products);
+            console.log(this.props);
+            
+        }
     }
 
     toggle() {
         this.setState({
-            isOpen: !this.state.isOpen
+            isOpen: !this.state.isOpen,
         });
     }
 
     async openCartModal(bool) {
         await this.props.openCart(bool);
         this.setState({
-            isShowModal: this.props.getIsModal
+            isShowModal: this.props.getIsModal,
         });
     }
 
@@ -89,12 +103,23 @@ class Header extends Component {
     }
 }
 
+const propTypes = {
+    carts: PropTypes.array.isRequired,
+    getTotalQuantity: PropTypes.number.isRequired,
+    getIsModal: PropTypes.bool.isRequired,
+    openCart: PropTypes.func.isRequired,
+    addLocalDataToCart: PropTypes.func.isRequired,
+};
+
+Header.propTypes = propTypes;
+
 export default connect(
     state => ({
         carts: cartsSelectors.getCarts(state),
         getTotalQuantity: cartsSelectors.getTotalQuantity(state),
         getIsModal: cartsSelectors.getIsModal(state),
     }), {
-        openCart
+        openCart,
+        addLocalDataToCart,
     }
 )(Header);

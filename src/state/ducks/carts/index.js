@@ -1,5 +1,6 @@
 import {
   addToCart,
+  addLocalDataToCart,
   checkout,
   changeQuantity,
   removeProductInCart,
@@ -11,6 +12,7 @@ import cartsReducers from './reducers';
 export {
   // actions
   addToCart,
+  addLocalDataToCart,
   checkout,
   changeQuantity,
   removeProductInCart,

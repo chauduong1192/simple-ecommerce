@@ -4,11 +4,14 @@ import {
   Container,
   Row,
   Col,
-  Input
 } from 'reactstrap';
 
 import { connect } from 'react-redux';
-import { addToCart, openCart, cartsSelectors } from '../../state/ducks/carts';
+import {
+  addToCart,
+  openCart,
+  cartsSelectors,
+} from '../../state/ducks/carts';
 
 import PRODUCTS from '../../services/mockData/products';
 import Breadcrum from '../Common/Breadcrum';
@@ -25,7 +28,7 @@ class ProductDetails extends Component {
       product: {},
       selectedImage: '',
       quantity: 1,
-      availableQuantity: 0
+      availableQuantity: 0,
     };
 
     this.addToCart = this.addToCart.bind(this);
@@ -55,7 +58,7 @@ class ProductDetails extends Component {
       if(product.id === productId){
         this.setState({
           product,
-          selectedImage : `${imageUrl}${product.images[0]}`
+          selectedImage : `${imageUrl}${product.images[0]}`,
         });
         return false;
       }

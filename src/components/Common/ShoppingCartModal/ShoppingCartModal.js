@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'reactstrap';
-import { Link, Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import { connect } from 'react-redux';
 import {

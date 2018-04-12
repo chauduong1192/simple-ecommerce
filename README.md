@@ -24,7 +24,15 @@ git clone https://git.sfvmeet.com/chauduong1192/leflair-code-challenge.git
 ```bash
 
 cd web
-yarn && yarn start
+yarn
+
+```
+
+### Start app
+
+```bash
+
+yarn start
 
 ```
 

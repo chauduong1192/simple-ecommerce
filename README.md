@@ -4,7 +4,7 @@
 
 ## Requirements
 
-View [Requirements file](./docs/requirements.pdf).
+View [Requirements file](./requirements.pdf).
 
 ## Usage
 

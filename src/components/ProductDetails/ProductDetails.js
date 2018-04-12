@@ -106,7 +106,7 @@ class ProductDetails extends Component {
               </div>
             </div>
           </Col>
-          <Col md="4" sm="12" xs="12">
+          <Col md="4" sm="12" xs="12" className="mt-20-sm">
             <div className="product-detail-right">
               <div className="title">
                 <h2>{product.title}</h2>

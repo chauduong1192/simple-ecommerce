@@ -4,7 +4,7 @@ $active-color: #0182ed;
 
 .product-details {
     padding-top: 100px;
-
+    
     .product-detail-left {
         .product-small-image {
             margin-top: -13px;
@@ -12,6 +12,9 @@ $active-color: #0182ed;
             width: 20%;
             .pot-small-img {
                 margin-top: 13px;
+            }
+            @media (max-width: 576px) {
+                width: 30%;
             }
         }
         .product-big-image {
@@ -114,6 +117,11 @@ $active-color: #0182ed;
     .title {
         h2 {
             font-size: 30px;
+        }
+    }
+    @media (max-width: 576px) {
+        .mt-20-sm {
+            margin-top: 10px;
         }
     }
 }

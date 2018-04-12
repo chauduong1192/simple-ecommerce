@@ -107,5 +107,11 @@ $primary-color: #1293fe;
             }
         }
     }
+    @media (min-width: 768px) {
+        height: 274px;;
+    }
+    @media (max-width: 576px) {
+        height: 100%;
+    }
     
 }

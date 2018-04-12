@@ -33,12 +33,12 @@ class Header extends Component {
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            // categories: [],
             isOpen: false,
             isCount : 0,
             isShowModal: false,
         };
         this.openCartModal = this.openCartModal.bind(this);
+        this.toggle = this.toggle.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -78,8 +78,6 @@ class Header extends Component {
                 <Navbar light expand="md">
                     <Container>
                         <Link className="navbar-brand" to="/">{APP.name}</Link>
-                        <NavbarToggler onClick={this.toggle} />
-                        <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
                                     <NavLink className="cart-right" onClick={() => this.openCartModal(true)}>
@@ -90,7 +88,6 @@ class Header extends Component {
                                     </NavLink>
                                 </NavItem>
                             </Nav>
-                        </Collapse>
                     </Container>
                 </Navbar>
                 <div className={`body-overlay ${this.state.isShowModal && 'is-visible'}`} onClick={() => this.openCartModal(false)}></div>

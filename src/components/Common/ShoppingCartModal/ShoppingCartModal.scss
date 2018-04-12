@@ -13,13 +13,16 @@ $active-color: #0182ed;
     right: -100%;
     top: 0;
     transition: all 0.25s ease 0s;
-    width: 100%;
     z-index: 99999;
     width: 475px;
     &.open {
         opacity: 1;
         padding-bottom: 50px;
         right: calc(0px - 16px);
+        @media (max-width: 576px) {
+            right: 0;
+            width: 100%;
+        }
     }
     .inner {
         padding: 102px 50px;
@@ -32,12 +35,15 @@ $active-color: #0182ed;
             right: 0;
             top: 0;
             z-index: 10;
-            padding: 21px 50px 24px;
+            padding: 21px 42px 24px;
             a {
                 cursor: pointer;
                 &:hover {
                     color: $primary-color;
                 }
+            }
+            @media (max-width: 576px) {
+                padding: 10px 15px;
             }
         }
         .cart-empty-title {
@@ -67,7 +73,7 @@ $active-color: #0182ed;
                         }
                     }
                     .details {
-                        min-width: 70%;
+                        min-width: 63%;
                         h2 {
                             border-top-width: 0;
                             color: #000;
@@ -79,6 +85,12 @@ $active-color: #0182ed;
                         }
                         span {
                             color: $primary-color;
+                        }
+                        @media (max-width: 576px) {
+                            min-width: 50%;
+                            .select-quantity {
+                                width: 50% !important;
+                            }
                         }
                     }
                     .remove {
@@ -127,5 +139,12 @@ $active-color: #0182ed;
                 }
             }
         }
+        @media (max-width: 576px) {
+            padding: 102px 20px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        right: 120%;
     }
 }

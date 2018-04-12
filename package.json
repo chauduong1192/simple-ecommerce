@@ -1,6 +1,6 @@
 {
-  "name": "sf-vmeet-web-server-new",
-  "version": "0.1.0",
+  "name": "leflair-code-challenge",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.0",
